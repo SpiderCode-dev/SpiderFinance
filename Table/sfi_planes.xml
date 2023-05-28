@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+   Document   : sfi_planes.xml
+   Author     : @xfirepc (https://xfirepc.com)
+   Description: Estructura de la tabla sfi_planes
+ -->
+<table>
+    <column>
+        <name>id</name>
+        <type>serial</type>
+        <null>NO</null>
+    </column>
+    <constraint>
+        <name>sfi_planes_primary_key</name>
+        <type>PRIMARY KEY (id)</type>
+    </constraint>
+    <column>
+        <name>name</name>
+        <type>varchar(25)</type>
+        <null>NO</null>
+    </column>
+    <column>
+        <name>description</name>
+        <type>varchar(80)</type>
+    </column>
+    <column>
+        <name>price</name>
+        <type>double</type>
+        <null>NO</null>
+    </column>
+    <column>
+        <name>active</name>
+        <type>boolean</type>
+        <default>1</default>
+    </column>
+    <column>
+        <name>create_rules</name>
+        <type>boolean</type>
+        <default>0</default>
+    </column>
+    <column>
+        <name>router</name>
+        <type>varchar(25)</type>
+    </column>
+
+    <!-- Second section -->
+    <column>
+        <name>reuse</name>
+        <type>integer</type>
+        <default>1</default>
+    </column>
+    <column>
+        <name>kbps_up</name>
+        <type>integer</type>
+        <default>100</default>
+    </column>
+    <column>
+        <name>kbps_down</name>
+        <type>integer</type>
+        <default>100</default>
+    </column>
+    <column>
+        <name>limit_at</name>
+        <type>integer</type>
+        <null>NO</null>
+    </column>
+    <column>
+        <name>burst_limit</name>
+        <type>integer</type>
+        <default>0</default>
+    </column>
+    <column>
+        <name>burst_time</name>
+        <type>integer</type>
+        <default>0</default>
+    </column>
+    <column>
+        <name>burst_threshold</name>
+        <type>integer</type>
+        <default>0</default>
+    </column>
+    <column>
+        <name>priority</name>
+        <type>integer</type>
+    </column>
+    <column>
+        <name>address_list</name>
+        <type>varchar(25)</type>
+    </column>
+    <column>
+        <name>parent</name>
+        <type>varchar(25)</type>
+    </column>
+</table>

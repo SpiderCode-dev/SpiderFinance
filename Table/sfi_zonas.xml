@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+   Document   : sfi_zonas.xml
+   Author     : @xfirepc (https://xfirepc.com)
+   Description: Estructura de la tabla sfi_zonas
+ -->
+<table>
+    <column>
+        <name>id</name>
+        <type>serial</type>
+        <null>NO</null>
+    </column>
+    <column>
+        <name>name</name>
+        <type>varchar(25)</type>
+        <null>NO</null>
+    </column>
+    <constraint>
+        <name>sf_signs_enterprise_primary_key</name>
+        <type>PRIMARY KEY (id)</type>
+    </constraint>
+</table>

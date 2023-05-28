@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+   Document   : sfi_cliente_instalaciones.xml
+   Author     : @xfirepc (https://xfirepc.com)
+   Description: Estructura de la tabla sfi_cliente_instalaciones
+ -->
+<table>
+    <column>
+        <name>id</name>
+        <type>serial</type>
+        <null>NO</null>
+    </column>
+    <constraint>
+        <name>sf_signs_enterprise_primary_key</name>
+        <type>PRIMARY KEY (id)</type>
+    </constraint>
+
+    <column>
+        <name>idzone</name>
+        <type>integer</type>
+    </column>
+    <constraint>
+        <name>sfi_cliente_instalaciones_idzone_fkey</name>
+        <type>FOREIGN KEY (idzone) REFERENCES sfi_zonas(id) ON DELETE CASCADE ON UPDATE SET NULL</type>
+    </constraint>
+
+    <column>
+        <name>setupdate</name>
+        <type>datetime</type>
+    </column>
+
+    <column>
+        <name>idagente</name>
+        <type>integer</type>
+    </column>
+    <constraint>
+        <name>sfi_cliente_instalaciones_idagente_fkey</name>
+        <type>FOREIGN KEY (idagente) REFERENCES sfi_agentes(id) ON DELETE CASCADE ON UPDATE SET NULL</type>
+    </constraint>
+
+    <constraint>
+        <name>sfi_cliente_instalaciones_idproducto_fkey</name>
+        <type>FOREIGN KEY (idproducto) REFERENCES sfi_productos(id) ON DELETE CASCADE ON UPDATE SET NULL</type>
+    </constraint>
+    <constraint>
+        <name>sfi_cliente_instalaciones_idagente_fkey</name>
+        <type>FOREIGN KEY (idagente) REFERENCES sfi_agentes(id) ON DELETE CASCADE ON UPDATE SET NULL</type>
+    </constraint>
+
+    <column>
+        <name>observations</name>
+        <type>text</type>
+    </column>
+
+    <column>
+        <name>status</name>
+        <type>integer</type>
+        <default>0</default>
+    </column>
+
+
+
+
+
+</table>

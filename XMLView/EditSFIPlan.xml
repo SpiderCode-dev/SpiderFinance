@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<view>
+    <columns>
+        <group name="conta_params" numcolumns="12" title="Configuración basica" icon="fas fa-at">
+            <column name="Nombre del plan" numcolumns="2">
+                <widget type="text" fieldname="name"/>
+            </column>
+            <column name="Descripcion" numcolumns="4" description="Agregar referencias">
+                <widget type="text" fieldname="description"/>
+            </column>
+            <column name="Precio" numcolumns="2">
+                <widget type="money" fieldname="price"/>
+            </column>
+            <column name="active" numcolumns="2">
+                <widget type="checkbox" fieldname="active"/>
+            </column>
+            <column name="Api" numcolumns="6">
+                <widget type="text" fieldname="api"/>
+            </column>
+            <column name="Token" numcolumns="6">
+                <widget type="text" fieldname="token"/>
+            </column>
+        </group>
+
+        <group name="documents" numcolumns="12" title="Estados de documentos" icon="fas fa-tags">
+            <column name="name" display="none" order="0">
+                <widget type="text" fieldname="name" readonly="true" required="true"/>
+            </column>
+            <column name="Factura autorizada" numcolumns="2">
+                <widget type="select" fieldname="invoice_status">
+                    <values source="estados_documentos" fieldcode="idestado" fieldtitle="nombre" />
+                </widget>
+            </column>
+
+            <column name="Guía de remisión autorizada" numcolumns="2">
+                <widget type="select" fieldname="idrouter">
+                    <values source="routers" fieldcode="id" fieldtitle="nombre" />
+                </widget>
+            </column>
+        </group>
+    </columns>
+</view>
