@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<view>
+    <columns>
+        <column name="#" order="120">
+            <widget type="text" fieldname="id" />
+        </column>
+        <column name="customer" order="110">
+            <widget type="autocomplete" fieldname="codcliente" onclick="EditCliente">
+                <values source="Cliente" fieldcode="codcliente" fieldtitle="nombre"/>
+            </widget>
+        </column>
+        <column name="plan" order="110">
+            <widget type="autocomplete" fieldname="idplan" onclick="EditPlan">
+                <values source="sfi_planes" fieldcode="id" fieldtitle="name"/>
+            </widget>
+        </column>
+        <column name="agent" order="110">
+            <widget type="autocomplete" fieldname="codagente" onclick="EditPlan">
+                <values source="agentes" fieldcode="codagente" fieldtitle="name"/>
+            </widget>
+        </column>
+        <column name="zone" order="110">
+            <widget type="date" fieldname="setupdate" />
+        </column>
+        <column name="observations" order="110">
+            <widget type="text" fieldname="observations" />
+        </column>
+        <column name="status" order="110">
+            <widget type="text" fieldname="status" />
+        </column>
+    </columns>
+</view>

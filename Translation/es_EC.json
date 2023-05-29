@@ -2,5 +2,8 @@
   "sales": "Finanzas",
   "warehouse": "Sucursal",
   "warehouses": "Sucursales",
-  "plans": "Planes"
+  "plans": "Planes",
+  "network": "Red",
+  "zones": "Zonas",
+  "manage-network": "Gestión de Red"
 }

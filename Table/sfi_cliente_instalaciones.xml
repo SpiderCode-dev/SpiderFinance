@@ -11,7 +11,7 @@
         <null>NO</null>
     </column>
     <constraint>
-        <name>sf_signs_enterprise_primary_key</name>
+        <name>sf_cliente_instalaciones_primary_key</name>
         <type>PRIMARY KEY (id)</type>
     </constraint>
 
@@ -30,21 +30,13 @@
     </column>
 
     <column>
-        <name>idagente</name>
-        <type>integer</type>
+        <name>codagente</name>
+        <type>character varying(10)</type>
     </column>
-    <constraint>
-        <name>sfi_cliente_instalaciones_idagente_fkey</name>
-        <type>FOREIGN KEY (idagente) REFERENCES sfi_agentes(id) ON DELETE CASCADE ON UPDATE SET NULL</type>
-    </constraint>
 
     <constraint>
-        <name>sfi_cliente_instalaciones_idproducto_fkey</name>
-        <type>FOREIGN KEY (idproducto) REFERENCES sfi_productos(id) ON DELETE CASCADE ON UPDATE SET NULL</type>
-    </constraint>
-    <constraint>
-        <name>sfi_cliente_instalaciones_idagente_fkey</name>
-        <type>FOREIGN KEY (idagente) REFERENCES sfi_agentes(id) ON DELETE CASCADE ON UPDATE SET NULL</type>
+        <name>sfi_cliente_instalaciones_codagente_fkey</name>
+        <type>FOREIGN KEY (codagente) REFERENCES agentes(codagente) ON DELETE CASCADE ON UPDATE SET NULL</type>
     </constraint>
 
     <column>
@@ -58,8 +50,8 @@
         <default>0</default>
     </column>
 
-
-
-
-
+    <column>
+        <name>idcontacto</name>
+        <type>integer</type>
+    </column>
 </table>

@@ -5,7 +5,7 @@ namespace FacturaScripts\Plugins\SpiderFinance\Model;
 use FacturaScripts\Core\Model\Base\ModelClass;
 use FacturaScripts\Core\Model\Base\ModelTrait;
 
-class SFIPlan extends ModelClass
+class Zona extends ModelClass
 {
     use ModelTrait;
 
@@ -16,6 +16,6 @@ class SFIPlan extends ModelClass
 
     public static function tableName(): string
     {
-        return 'sfi_planes';
+        return 'sfi_zonas';
     }
 }

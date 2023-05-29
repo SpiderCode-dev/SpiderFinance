@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<view>
+    <columns>
+        <group name="basic_config" numcolumns="12" title="Datos del cliente" icon="fas fa-user">
+            <column name="cifnif" numcolumns="3">
+                <widget type="text" fieldname="cifnif" icon="fas fa-search"/>
+            </column>
+            <column name="Nombre del cliente" numcolumns="3">
+                <widget type="text" fieldname="nombrecliente" icon="fas fa-user"/>
+            </column>
+            <column name="Correo electrónico" numcolumns="3" >
+                <widget type="text" fieldname="email" icon="fas fa-envelope"/>
+            </column>
+            <column name="Teléfono" numcolumns="3" >
+                <widget type="text" fieldname="telefono" icon="fas fa-phone"/>
+            </column>
+            <column name="address" numcolumns="8" >
+                <widget type="text" fieldname="direccion" icon="fas fa-map-marker" />
+            </column>
+        </group>
+
+        <group name="service" numcolumns="12" title="Información del servicio" icon="fas fa-ethernet">
+            <column name="plan" numcolumns="3">
+                <widget type="select" fieldname="idplan" onclick="EditPlan">
+                    <values source="sfi_planes" fieldcode="id" fieldtitle="name"/>
+                </widget>
+            </column>
+            <column name="zone"  numcolumns="3">>
+                <widget type="select" fieldname="idzona" onclick="EditPlan">
+                    <values source="sfi_zonas" fieldcode="id" fieldtitle="name"/>
+                </widget>
+            </column>
+            <column name="Fecha de instalación" numcolumns="3">
+                <widget type="datetime" fieldname="setupdate"/>
+            </column>
+
+            <column name="Observations" numcolumns="12" >
+                <widget type="textarea" fieldname="observations"/>
+            </column>
+        </group>
+    </columns>
+</view>

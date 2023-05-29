@@ -5,10 +5,11 @@ namespace FacturaScripts\Plugins\SpiderFinance\Model;
 use FacturaScripts\Core\Model\Base\ModelClass;
 use FacturaScripts\Core\Model\Base\ModelTrait;
 
-class SFIZona extends ModelClass
+class ClienteInstalacion extends ModelClass
 {
     use ModelTrait;
 
+    public $id;
     public static function primaryColumn(): string
     {
         return 'id';
@@ -16,6 +17,6 @@ class SFIZona extends ModelClass
 
     public static function tableName(): string
     {
-        return 'sfi_zonas';
+        return 'sfi_cliente_instalaciones';
     }
 }
