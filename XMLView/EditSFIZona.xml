@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<view>
+    <columns>
+        <group name="zone" numcolumns="12" title="Zonas" icon="fas fa-map">
+            <column name="Nombre de la zona" numcolumns="5">
+                <widget type="text" fieldname="name"/>
+            </column>
+        </group>
+    </columns>
+</view>

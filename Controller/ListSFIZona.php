@@ -4,19 +4,19 @@ namespace FacturaScripts\Plugins\SpiderFinance\Controller;
 
 use FacturaScripts\Core\Lib\ExtendedController\ListController;
 
-class ListSFIPlan extends ListController
+class ListSFIZona extends ListController
 {
     public function getPageData()
     {
         $data = parent::getPageData();
-        $data['menu'] = 'services';
-        $data['title'] = 'plans';
-        $data['icon'] = 'fas fa-list';
+        $data['menu'] = 'network';
+        $data['title'] = 'zones';
+        $data['icon'] = 'fas fa-map';
         return $data;
     }
 
     protected function createViews()
     {
-        $this->addView('ListSFIPlan', 'SFIPlan', 'plans', 'fas fa-list');
+        $this->addView('ListSFIZona', 'SFIZona', 'zones', 'fas fa-map');
     }
 }

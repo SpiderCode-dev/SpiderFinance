@@ -1,41 +1,54 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <view>
     <columns>
-        <group name="conta_params" numcolumns="12" title="Configuración basica" icon="fas fa-at">
-            <column name="Nombre del plan" numcolumns="2">
+        <group name="basic_config" numcolumns="12" title="Configuración General" icon="fas fa-cog">
+            <column name="Nombre del plan" numcolumns="5">
                 <widget type="text" fieldname="name"/>
             </column>
-            <column name="Descripcion" numcolumns="4" description="Agregar referencias">
+            <column name="description" numcolumns="5" >
                 <widget type="text" fieldname="description"/>
             </column>
-            <column name="Precio" numcolumns="2">
+            <column name="price" numcolumns="2">
                 <widget type="money" fieldname="price"/>
+            </column>
+            <column name="Crear reglas" numcolumns="2" description="Crear reglas en el Router">
+                <widget type="checkbox" fieldname="create_rules"/>
             </column>
             <column name="active" numcolumns="2">
                 <widget type="checkbox" fieldname="active"/>
             </column>
-            <column name="Api" numcolumns="6">
-                <widget type="text" fieldname="api"/>
-            </column>
-            <column name="Token" numcolumns="6">
-                <widget type="text" fieldname="token"/>
-            </column>
         </group>
 
-        <group name="documents" numcolumns="12" title="Estados de documentos" icon="fas fa-tags">
-            <column name="name" display="none" order="0">
-                <widget type="text" fieldname="name" readonly="true" required="true"/>
+        <group name="velocity" numcolumns="12" title="Velocidad" icon="fas fa-tachometer-alt">
+            <column name="Subida kbps" numcolumns="4">
+                <widget type="number" fieldname="kbps_up" icon="fas fa-upload"/>
             </column>
-            <column name="Factura autorizada" numcolumns="2">
-                <widget type="select" fieldname="invoice_status">
-                    <values source="estados_documentos" fieldcode="idestado" fieldtitle="nombre" />
-                </widget>
+            <column name="Descarga kbps" numcolumns="4">
+                <widget type="number" fieldname="kbps_down" icon="fas fa-download"/>
             </column>
-
-            <column name="Guía de remisión autorizada" numcolumns="2">
-                <widget type="select" fieldname="idrouter">
-                    <values source="routers" fieldcode="id" fieldtitle="nombre" />
-                </widget>
+            <column name="Reuso" numcolumns="4" description="Solo se aplica cuando el router esta configurado con Colas estáticas. Ejemplo 1:10">
+                <widget type="number" fieldname="reuse" icon="fas fa-sort-numeric-up-alt"/>
+            </column>
+            <column name="Limit AT" numcolumns="3" description="RX/TX">
+                <widget type="number" fieldname="limit_at" icon="fas fa-percentage"/>
+            </column>
+            <column name="Burst Limit" numcolumns="3" description="RX/TX">
+                <widget type="number" fieldname="burst_limit" icon="fas fa-percentage"/>
+            </column>
+            <column name="Burst threshold" numcolumns="3" description="RX/TX">
+                <widget type="number" fieldname="burst_threshold" icon="fas fa-percentage"/>
+            </column>
+            <column name="Burst Time" numcolumns="3" description="Tiempo de ráfaga">
+                <widget type="number" fieldname="burst_time"/>
+            </column>
+            <column name="priority" numcolumns="2">
+                <widget type="number" fieldname="priority"/>
+            </column>
+            <column name="Parent" numcolumns="4" description="Solo se aplica cuando el router trabaja con colas estáticas y reuso está configurado 1:1">
+                <widget type="text" fieldname="parent"/>
+            </column>
+            <column name="Addresslist" numcolumns="4">
+                <widget type="text" fieldname="address_list"/>
             </column>
         </group>
     </columns>

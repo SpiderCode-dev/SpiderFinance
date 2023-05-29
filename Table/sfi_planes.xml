@@ -62,7 +62,7 @@
     <column>
         <name>limit_at</name>
         <type>integer</type>
-        <null>NO</null>
+        <default>0</default>
     </column>
     <column>
         <name>burst_limit</name>
@@ -82,6 +82,7 @@
     <column>
         <name>priority</name>
         <type>integer</type>
+        <default>9</default>
     </column>
     <column>
         <name>address_list</name>
