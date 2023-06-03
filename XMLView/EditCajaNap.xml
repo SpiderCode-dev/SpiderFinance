@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<view>
+    <columns>
+        <group name="Caja NAP" numcolumns="12" title="Zonas" icon="fas fa-boxes">
+            <column name="code" numcolumns="3">
+                <widget type="text" fieldname="name" readonly="true"/>
+            </column>
+            <column name="zone"  numcolumns="3">>
+                <widget type="select" fieldname="idzona" onclick="EditPlan">
+                    <values source="sfi_zonas" fieldcode="id" fieldtitle="name"/>
+                </widget>
+            </column>
+            <column name="Distrito" numcolumns="3">
+                <widget type="text" fieldname="distrito"/>
+            </column>
+            <column name="number" numcolumns="2">
+                <widget type="number" fieldname="numero_nap"/>
+            </column>
+            <column name="port-numbers" numcolumns="2">
+                <widget type="number" fieldname="numero_puertos"/>
+            </column>
+            <column name="available" numcolumns="2">
+                <widget type="number" fieldname="disponibles" readonly="true"/>
+            </column>
+            <column name="coords" numcolumns="4">
+                <widget type="number" fieldname="coordenadas"/>
+            </column>
+        </group>
+    </columns>
+</view>

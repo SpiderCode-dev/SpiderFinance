@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+   Document   : sfi_cajas_nap.xml
+   Author     : @xfirepc (https://xfirepc.com)
+   Description: Estructura de la tabla sfi_zonas
+ -->
+<table>
+    <column>
+        <name>id</name>
+        <type>serial</type>
+        <null>NO</null>
+    </column>
+    <constraint>
+        <name>sf_signs_enterprise_primary_key</name>
+        <type>PRIMARY KEY (id)</type>
+    </constraint>
+    <column>
+        <name>name</name>
+        <type>varchar(25)</type>
+        <null>NO</null>
+    </column>
+    <column>
+        <name>observations</name>
+        <type>varchar(150)</type>
+    </column>
+
+    <column>
+        <name>idzona</name>
+        <type>integer</type>
+    </column>
+    <constraint>
+        <name>sf_signs_enterprise_foreign_key</name>
+        <type>FOREIGN KEY (idzona) REFERENCES sfi_zonas(id) ON DELETE SET NULL ON UPDATE CASCADE </type>
+    </constraint>
+    <column>
+        <name>distrito</name>
+        <type>varchar(50)</type>
+    </column>
+    <column>
+        <name>numero_nap</name>
+        <type>integer</type>
+    </column>
+    <column>
+        <name>numero_puertos</name>
+        <type>integer</type>
+    </column>
+    <column>
+        <name>disponibles</name>
+        <type>integer</type>
+    </column>
+    <column>
+        <name>coordenadas</name>
+        <type>varchar(60)</type>
+    </column>
+
+</table>

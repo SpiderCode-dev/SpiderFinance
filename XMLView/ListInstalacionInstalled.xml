@@ -15,11 +15,6 @@
                 <values source="sfi_planes" fieldcode="id" fieldtitle="name"/>
             </widget>
         </column>
-        <column name="nap" order="110">
-            <widget type="autocomplete" fieldname="idnap" onclick="EditPlan">
-                <values source="sfi_cajas_nap" fieldcode="id" fieldtitle="name"/>
-            </widget>
-        </column>
         <column name="agent" order="110">
             <widget type="autocomplete" fieldname="codagente" onclick="EditPlan">
                 <values source="agentes" fieldcode="codagente" fieldtitle="name"/>

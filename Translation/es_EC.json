@@ -5,5 +5,7 @@
   "plans": "Planes",
   "network": "Red",
   "zones": "Zonas",
+  "installations": "Instalaciones",
+  "nap-boxes": "Cajas NAPs",
   "manage-network": "Gestión de Red"
 }

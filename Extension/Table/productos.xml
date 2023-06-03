@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+   Document   : productos.xml
+   Author     : @xfirepc (https://xfirepc.com)
+   Description: Estructura de la tabla productos
+ -->
+<table>
+    <column>
+        <name>idplan</name>
+        <type>serial</type>
+        <null>YES</null>
+    </column>
+
+    <constraint>
+        <name>sfi_planes_idplan_fkey</name>
+        <type>FOREIGN KEY (idplan) REFERENCES sfi_planes(id) ON DELETE SET NULL ON UPDATE CASCADE</type>
+    </constraint>
+</table>

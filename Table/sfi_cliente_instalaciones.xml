@@ -25,6 +25,29 @@
     </constraint>
 
     <column>
+        <name>idnap</name>
+        <type>integer</type>
+    </column>
+    <constraint>
+        <name>sfi_cliente_instalaciones_idnap_fkey</name>
+        <type>FOREIGN KEY (idnap) REFERENCES sfi_cajas_nap(id) ON DELETE CASCADE ON UPDATE SET NULL</type>
+    </constraint>
+
+    <column>
+        <name>idplan</name>
+        <type>integer</type>
+    </column>
+    <constraint>
+        <name>sfi_cliente_instalaciones_idzone_fkey</name>
+        <type>FOREIGN KEY (idplan) REFERENCES sfi_planes(id) ON DELETE CASCADE ON UPDATE CASCADE</type>
+    </constraint>
+
+    <column>
+        <name>visitdate</name>
+        <type>datetime</type>
+    </column>
+
+    <column>
         <name>setupdate</name>
         <type>datetime</type>
     </column>
@@ -54,4 +77,19 @@
         <name>idcontacto</name>
         <type>integer</type>
     </column>
+
+    <constraint>
+        <name>sfi_cliente_id_contacto_fkey</name>
+        <type>FOREIGN KEY (idcontacto) REFERENCES contactos(idcontacto) ON DELETE CASCADE ON UPDATE CASCADE</type>
+    </constraint>
+
+    <column>
+        <name>codcliente</name>
+        <type>character varying(10)</type>
+    </column>
+
+    <constraint>
+        <name>sfi_cliente_instalaciones_codcliente_fkey</name>
+        <type>FOREIGN KEY (codcliente) REFERENCES clientes(codcliente) ON DELETE CASCADE ON UPDATE CASCADE</type>
+    </constraint>
 </table>

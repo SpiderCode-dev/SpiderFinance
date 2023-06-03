@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<view>
+    <columns>
+        <group name="service" numcolumns="12" title="Información del servicio" icon="fas fa-ethernet">
+            <column name="codcliente" display="none">
+                <widget type="text" fieldname="codcliente"/>
+            </column>
+            <column name="contact" numcolumns="3">
+                <widget type="select" fieldname="idcontacto" onclick="EditContacto">
+                </widget>
+            </column>
+            <column name="plan" numcolumns="3">
+                <widget type="select" fieldname="idplan" onclick="EditPlan">
+                    <values source="sfi_planes" fieldcode="id" fieldtitle="name"/>
+                </widget>
+            </column>
+            <column name="zone"  numcolumns="3">>
+                <widget type="select" fieldname="idzona" onclick="EditPlan">
+                    <values source="sfi_zonas" fieldcode="id" fieldtitle="name"/>
+                </widget>
+            </column>
+
+            <column name="Fecha de visita" numcolumns="3">
+                <widget type="datetime" fieldname="visitdate"/>
+            </column>
+
+            <column name="agent"  numcolumns="3">>
+                <widget type="select" fieldname="codagente" onclick="EditAgente">
+                    <values source="agentes" fieldcode="codagente" fieldtitle="nombre"/>
+                </widget>
+            </column>
+
+            <column name="status" numcolumns="3">
+                <widget type="text" fieldname="StatusName" readonly="true"/>
+            </column>
+
+            <column name="Observations" numcolumns="12" >
+                <widget type="textarea" fieldname="observations"/>
+            </column>
+        </group>
+    </columns>
+</view>
