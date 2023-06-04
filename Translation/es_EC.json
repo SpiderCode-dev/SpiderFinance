@@ -3,9 +3,14 @@
   "warehouse": "Sucursal",
   "warehouses": "Sucursales",
   "plans": "Planes",
+  "coords": "Coordenadas",
   "network": "Red",
   "zones": "Zonas",
+  "nap-box": "NAP",
+  "zone": "Zona",
   "installations": "Instalaciones",
   "nap-boxes": "Cajas NAPs",
+  "number-nap": "Número de NAP",
+  "port-numbers": "Número de puertos",
   "manage-network": "Gestión de Red"
 }

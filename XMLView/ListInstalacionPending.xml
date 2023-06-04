@@ -21,13 +21,12 @@
             </widget>
         </column>
         <column name="zone" order="110">
-            <widget type="date" fieldname="setupdate" />
+            <widget type="autocomplete" fieldname="idzone" onclick="EditZona">
+                <values source="sfi_zonas" fieldcode="id" fieldtitle="name"/>
+            </widget>
         </column>
         <column name="observations" order="110">
             <widget type="text" fieldname="observations" />
-        </column>
-        <column name="status" order="110">
-            <widget type="text" fieldname="status" />
         </column>
     </columns>
 </view>

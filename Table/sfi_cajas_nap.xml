@@ -15,7 +15,7 @@
         <type>PRIMARY KEY (id)</type>
     </constraint>
     <column>
-        <name>name</name>
+        <name>code</name>
         <type>varchar(25)</type>
         <null>NO</null>
     </column>
@@ -23,33 +23,40 @@
         <name>observations</name>
         <type>varchar(150)</type>
     </column>
-
     <column>
-        <name>idzona</name>
+        <name>address</name>
+        <type>varchar(150)</type>
+    </column>
+    <column>
+        <name>idzone</name>
         <type>integer</type>
     </column>
     <constraint>
         <name>sf_signs_enterprise_foreign_key</name>
-        <type>FOREIGN KEY (idzona) REFERENCES sfi_zonas(id) ON DELETE SET NULL ON UPDATE CASCADE </type>
+        <type>FOREIGN KEY (idzone) REFERENCES sfi_zonas(id) ON DELETE SET NULL ON UPDATE CASCADE </type>
     </constraint>
     <column>
-        <name>distrito</name>
+        <name>district</name>
         <type>varchar(50)</type>
     </column>
     <column>
-        <name>numero_nap</name>
+        <name>number_nap</name>
         <type>integer</type>
     </column>
     <column>
-        <name>numero_puertos</name>
+        <name>number_ports</name>
         <type>integer</type>
     </column>
     <column>
-        <name>disponibles</name>
+        <name>available</name>
         <type>integer</type>
     </column>
     <column>
-        <name>coordenadas</name>
+        <name>busy</name>
+        <type>varchar(30)</type>
+    </column>
+    <column>
+        <name>coords</name>
         <type>varchar(60)</type>
     </column>
 

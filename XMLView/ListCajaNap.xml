@@ -2,22 +2,22 @@
 
 <view>
     <columns>
-        <column name="name" order="100">
-            <widget type="text" fieldname="name" />
+        <column name="code" order="100">
+            <widget type="text" fieldname="code" />
         </column>
         <column name="zone" order="110">
-            <widget type="autocomplete" fieldname="idzona" onclick="EditPlan">
-                <values source="sfi_zonas" fieldcode="idzona" fieldtitle="name"/>
+            <widget type="autocomplete" fieldname="idzone" onclick="EditZona">
+                <values source="sfi_zonas" fieldcode="id" fieldtitle="name"/>
             </widget>
         </column>
-        <column name="Distrito" order="120">
-            <widget type="text" fieldname="distrito" />
-        </column>
         <column name="Puertos" order="120">
-            <widget type="text" fieldname="numero_puertos" />
+            <widget type="text" fieldname="number_ports" />
         </column>
         <column name="Disponibles" order="130">
-            <widget type="text" fieldname="disponibles" />
+            <widget type="text" fieldname="available" />
+        </column>
+        <column name="coords" order="130">
+            <widget type="text" fieldname="coords" />
         </column>
         <column name="observations" order="130">
             <widget type="text" fieldname="observations" />

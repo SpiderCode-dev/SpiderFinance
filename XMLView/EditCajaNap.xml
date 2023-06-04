@@ -1,29 +1,38 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <view>
     <columns>
-        <group name="Caja NAP" numcolumns="12" title="Zonas" icon="fas fa-boxes">
+        <group name="nap" numcolumns="12" title="Caja NAP" icon="fas fa-boxes">
             <column name="code" numcolumns="3">
-                <widget type="text" fieldname="name" readonly="true"/>
+                <widget type="text" fieldname="code" readonly="true"/>
             </column>
             <column name="zone"  numcolumns="3">>
-                <widget type="select" fieldname="idzona" onclick="EditPlan">
+                <widget type="select" fieldname="idzone" onclick="EditZone">
                     <values source="sfi_zonas" fieldcode="id" fieldtitle="name"/>
                 </widget>
             </column>
-            <column name="Distrito" numcolumns="3">
-                <widget type="text" fieldname="distrito"/>
+            <column name="Distrito" numcolumns="4" description="Poner un código referencial (D1, D2, D3)">
+                <widget type="text" fieldname="district"/>
             </column>
-            <column name="number" numcolumns="2">
-                <widget type="number" fieldname="numero_nap"/>
+            <column name="address" numcolumns="6">
+                <widget type="text" fieldname="address" icon="fas fa-map-marker"/>
+            </column>
+            <column name="number-nap" numcolumns="2">
+                <widget type="number" fieldname="number_nap"/>
             </column>
             <column name="port-numbers" numcolumns="2">
-                <widget type="number" fieldname="numero_puertos"/>
-            </column>
-            <column name="available" numcolumns="2">
-                <widget type="number" fieldname="disponibles" readonly="true"/>
+                <widget type="number" fieldname="number_ports"/>
             </column>
             <column name="coords" numcolumns="4">
-                <widget type="number" fieldname="coordenadas"/>
+                <widget type="text" fieldname="coords"/>
+            </column>
+            <column name="available" numcolumns="2">
+                <widget type="number" fieldname="available" readonly="true"/>
+            </column>
+            <column name="Ocupados" numcolumns="2">
+                <widget type="text" fieldname="busy" readonly="true"/>
+            </column>
+            <column name="observations" numcolumns="10">
+                <widget type="textarea" fieldname="observations"/>
             </column>
         </group>
     </columns>

@@ -30,6 +30,9 @@
                     <values source="sfi_zonas" fieldcode="id" fieldtitle="name"/>
                 </widget>
             </column>
+            <column name="Fecha de visita" numcolumns="3">
+                <widget type="datetime" fieldname="visitdate"/>
+            </column>
             <column name="Fecha de instalación" numcolumns="3">
                 <widget type="datetime" fieldname="setupdate"/>
             </column>

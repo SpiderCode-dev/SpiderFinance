@@ -10,7 +10,11 @@
         <type>serial</type>
         <null>YES</null>
     </column>
-
+    <column>
+        <name>idplan</name>
+        <type>serial</type>
+        <null>YES</null>
+    </column>
     <constraint>
         <name>sfi_planes_idplan_fkey</name>
         <type>FOREIGN KEY (idplan) REFERENCES sfi_planes(id) ON DELETE SET NULL ON UPDATE CASCADE</type>
