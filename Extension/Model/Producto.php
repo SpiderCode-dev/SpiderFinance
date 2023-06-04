@@ -1,7 +1,6 @@
 <?php
 
-use FacturaScripts\Plugins\SpiderFinance\Model\Plan;
-
+namespace FacturaScripts\Plugins\SpiderFinance\Extension\Model;
 class Producto
 {
     public function getPlan()

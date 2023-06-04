@@ -38,7 +38,7 @@
         <type>integer</type>
     </column>
     <constraint>
-        <name>sfi_cliente_instalaciones_idzone_fkey</name>
+        <name>sfi_cliente_instalaciones_idplan_fkey</name>
         <type>FOREIGN KEY (idplan) REFERENCES sfi_planes(id) ON DELETE CASCADE ON UPDATE CASCADE</type>
     </constraint>
 

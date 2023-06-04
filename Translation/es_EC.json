@@ -5,6 +5,7 @@
   "plans": "Planes",
   "coords": "Coordenadas",
   "network": "Red",
+  "installation": "Instalación",
   "zones": "Zonas",
   "nap-box": "NAP",
   "zone": "Zona",
@@ -12,5 +13,7 @@
   "nap-boxes": "Cajas NAPs",
   "number-nap": "Número de NAP",
   "port-numbers": "Número de puertos",
-  "manage-network": "Gestión de Red"
+  "manage-network": "Gestión de Red",
+  "created_at" : "Creado",
+  "updated_at" : "Actualizado"
 }

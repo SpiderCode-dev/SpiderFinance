@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document   : lineasfacturascli.xml
+    Author     : Jose Flores (@xfirepc)
+    Description:
+        Structure for the lineasfacturascli table.
+-->
+<table>
+    <column>
+        <name>idplan</name>
+        <type>integer</type>
+        <null>YES</null>
+    </column>
+
+    <constraint>
+        <name>ca_lineasfacturascli_idplan_fkey</name>
+        <type>FOREIGN KEY (idplan) REFERENCES sfi_planes(id) ON DELETE SET NULL ON UPDATE CASCADE</type>
+    </constraint>
+</table>

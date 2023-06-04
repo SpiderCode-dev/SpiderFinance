@@ -147,7 +147,8 @@
     </column>
 
     <constraint>
-        <name>ca_linea_extra_recurrente</name>
+        <name>ca_linea_extra_recurrente_sfi_cliente_instalaciones</name>
+        <type>FOREIGN KEY (id_installation) REFERENCES sfi_cliente_instalaciones(id) ON DELETE CASCADE ON UPDATE CASCADE</type>
     </constraint>
     <constraint>
         <name>linea_extra_recurrente_pkey</name>

@@ -8,7 +8,8 @@ class Init extends InitClass
 {
     public function init()
     {
-        //$this->loadExtension(new Extension\Controller\ReportResult());
+        $this->loadExtension(new Extension\Model\Producto());
+        $this->loadExtension(new Extension\Model\FacturaCliente());
     }
     public function update()
     {

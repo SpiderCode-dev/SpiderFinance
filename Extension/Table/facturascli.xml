@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document   : facturascli.xml
+    Author     : Jose Flores (@xfirepc)
+    Description:
+        Structure for the facturasclis table.
+-->
+<table>
+    <column>
+        <name>id_installation</name>
+        <type>integer</type>
+    </column>
+    <constraint>
+        <name>ca_id_installation_facturascli</name>
+        <type>FOREIGN KEY (id_installation) REFERENCES sfi_cliente_instalaciones(id) ON DELETE SET NULL ON UPDATE CASCADE</type>
+    </constraint>
+</table>

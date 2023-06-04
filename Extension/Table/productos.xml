@@ -7,16 +7,20 @@
 <table>
     <column>
         <name>idplan</name>
-        <type>serial</type>
-        <null>YES</null>
-    </column>
-    <column>
-        <name>idplan</name>
-        <type>serial</type>
+        <type>integer</type>
         <null>YES</null>
     </column>
     <constraint>
-        <name>sfi_planes_idplan_fkey</name>
+        <name>ca_sfi_planes_idplan</name>
         <type>FOREIGN KEY (idplan) REFERENCES sfi_planes(id) ON DELETE SET NULL ON UPDATE CASCADE</type>
+    </constraint>
+    <column>
+        <name>id_installation</name>
+        <type>integer</type>
+        <null>YEST</null>
+    </column>
+    <constraint>
+        <name>ca_sfi_productos_cliente_instalaciones</name>
+        <type>FOREIGN KEY (id_installation) REFERENCES sfi_cliente_instalaciones(id) ON DELETE CASCADE ON UPDATE CASCADE</type>
     </constraint>
 </table>

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <view>
     <columns>
-        <group name="basic_config" numcolumns="12" title="Datos del cliente" icon="fas fa-user">
+        <group name="basic_config" numcolumns="12" title="Datos del cliente y línea de instalación" icon="fas fa-user">
             <column name="cifnif" numcolumns="3">
                 <widget type="text" fieldname="cifnif" icon="fas fa-search"/>
             </column>
-            <column name="Nombre del cliente" numcolumns="3">
+            <column name="customer" numcolumns="3">
                 <widget type="text" fieldname="nombrecliente" icon="fas fa-user"/>
             </column>
             <column name="Correo electrónico" numcolumns="3" >
@@ -13,6 +13,11 @@
             </column>
             <column name="Teléfono" numcolumns="3" >
                 <widget type="text" fieldname="telefono" icon="fas fa-phone"/>
+            </column>
+            <column name="contact" numcolumns="3">
+                <widget type="select" fieldname="idcontacto" onclick="EditContacto" readonly="true">
+                    <values source="contactos" fieldcode="idcontacto" fieldtitle="descripcion"/>
+                </widget>
             </column>
             <column name="address" numcolumns="8" >
                 <widget type="text" fieldname="direccion" icon="fas fa-map-marker" />
