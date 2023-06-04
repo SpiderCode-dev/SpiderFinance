@@ -61,32 +61,20 @@ class EditFacturaCliente extends \FacturaScripts\Core\Controller\EditFacturaClie
         if ($action == 'pay-adjust') {
             $this->dataBase->beginTransaction();
             $model = $this->getModel();
+
+            //Traer el total de pagos de los recibos y abonos
             $totalAbonos = $model->getTotalAbonos();
-            $receipts = $model->getReceipts();
-
-            //Traer el total de pagos de los recibos
-            $totalPayedReceipts = 0;
-            $unPayedReceipts = [];
-            foreach ($receipts as $receipt) {
-                if ($receipt->pagado) {
-                    $totalPayedReceipts += $receipt->importe;
-                } else {
-                    $unPayedReceipts[] = $receipt;
-                }
-            }
-
-            // Calcular el saldo según el total de abonos
+            $totalPayedReceipts = $model->getTotalReceipts();
             $saldo = $model->total - $totalPayedReceipts - $totalAbonos;
-            if ($saldo == 0) {
-                $model->pagado = true;
-                $model->save();
+
+            if ($saldo == 0 || ($totalAbonos == 0 && $saldo == $model->total)) {
+                $this->payReceipts($model);
                 ToolBox::i18nLog()->notice('Documento pagado correctamente');
-                return false;
+                return;
             }
 
             $planLine = $model->getPlanLine();
             if (!$planLine) {
-                $this->dataBase->rollback();
                 ToolBox::i18nLog()->warning('No se ha encontrado ninguna linea de plan de pagos');
                 return false;
             }
@@ -106,21 +94,19 @@ class EditFacturaCliente extends \FacturaScripts\Core\Controller\EditFacturaClie
                 }
                 $lines = $model->getLines();
                 Calculator::calculate($model, $lines, false);
+
                 if (!$model->save()) {
                     $this->dataBase->rollback();
                     ToolBox::i18nLog()->warning('No se ha podido guardar la factura');
                     return;
                 }
 
-                $this->dataBase->commit();
                 ToolBox::i18nLog()->notice('Documento pagado correctamente');
+                $this->payReceipts($model);
+                //TODO: Generar linea recurrente pendiente
 
-                $receipt = $model->getReceipts();
-                foreach ($receipt as $receipt) {
-                    $receipt->pagado = true;
-                    $receipt->nick = $this->user->nick;
-                    $receipt->save();
-                }
+                $this->dataBase->commit();
+                $this->redirect($model->url('edit'));
                 return;
             }
             $this->dataBase->rollback();
@@ -128,6 +114,15 @@ class EditFacturaCliente extends \FacturaScripts\Core\Controller\EditFacturaClie
         return parent::execPreviousAction($action);
     }
 
+
+    private function payReceipts($model) {
+        $receipts = $model->getReceipts();
+        foreach ($receipts as $receipt) {
+            $receipt->pagado = true;
+            $receipt->nick = $this->user->nick;
+            $receipt->save();
+        }
+    }
 
     public function loadData($viewName, $view)
     {

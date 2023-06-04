@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-    Document   : sfi_linea_extra_recurrente.xml
+    Document   : sfi_lineas_programadas.xml
     Author     : Jose Flores (@xfirepc)
     Description:
-        Structure for the sfi_linea_extra_recurrentes table.
+        Structure for the sfi_lineas_programadas table.
 -->
 <table>
     <column>
@@ -43,7 +43,6 @@
     <column>
         <name>idfactura</name>
         <type>integer</type>
-        <null>NO</null>
     </column>
     <column>
         <name>idlinea</name>
@@ -124,12 +123,6 @@
     </column>
 
     <column>
-        <name>suplido</name>
-        <type>boolean</type>
-        <default>false</default>
-    </column>
-
-    <column>
         <name>id_installation</name>
         <type>integer</type>
         <null>NO</null>
@@ -146,29 +139,42 @@
         <default>false</default>
     </column>
 
+    <column>
+        <name>idfacturaold</name>
+        <type>integer</type>
+    </column>
+
+    <column>
+        <name>type</name>
+        <type>character varying(10)</type>
+    </column>
+
     <constraint>
-        <name>ca_linea_extra_recurrente_sfi_cliente_instalaciones</name>
+        <name>ca_sfi_lineas_programadas_sfi_cliente_instalaciones</name>
         <type>FOREIGN KEY (id_installation) REFERENCES sfi_cliente_instalaciones(id) ON DELETE CASCADE ON UPDATE CASCADE</type>
     </constraint>
     <constraint>
-        <name>linea_extra_recurrente_pkey</name>
+        <name>sfi_lineas_programadas_pkey</name>
         <type>PRIMARY KEY (idlinea)</type>
     </constraint>
     <constraint>
-        <name>ca_linea_extra_recurrente_facturascli2</name>
+        <name>ca_sfi_lineas_programadas_facturascli2</name>
         <type>FOREIGN KEY (idfactura) REFERENCES facturascli (idfactura) ON DELETE CASCADE ON UPDATE CASCADE</type>
     </constraint>
     <constraint>
-        <name>ca_linea_extra_recurrente_linearect2</name>
-        <type>FOREIGN KEY (idlinearect) REFERENCES linea_extra_recurrente (idlinea) ON DELETE SET NULL ON UPDATE CASCADE
-        </type>
+        <name>ca_sfi_lineas_programadas_facturascli3</name>
+        <type>FOREIGN KEY (idfacturaold) REFERENCES facturascli (idfactura) ON DELETE CASCADE ON UPDATE CASCADE</type>
     </constraint>
     <constraint>
-        <name>ca_linea_extra_recurrente_impuestos</name>
+        <name>ca_sfi_lineas_programadas_linearect2</name>
+        <type>FOREIGN KEY (idlinearect) REFERENCES sfi_lineas_programadas (idlinea) ON DELETE SET NULL ON UPDATE CASCADE</type>
+    </constraint>
+    <constraint>
+        <name>ca_sfi_lineas_programadas_impuestos</name>
         <type>FOREIGN KEY (codimpuesto) REFERENCES impuestos (codimpuesto) ON DELETE RESTRICT ON UPDATE CASCADE</type>
     </constraint>
     <constraint>
-        <name>ca_linea_extra_recurrente_productos</name>
+        <name>ca_sfi_lineas_programadas_productos</name>
         <type>FOREIGN KEY (idproducto) REFERENCES productos (idproducto) ON DELETE SET NULL ON UPDATE CASCADE</type>
     </constraint>
 </table>

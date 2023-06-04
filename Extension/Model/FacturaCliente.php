@@ -44,12 +44,28 @@ class FacturaCliente
     }
 
     public function deleteUnpayedReceipts() {
-        return function () {
+        return function ()
+        {
             $receipts = $this->getReceipts();
             foreach ($receipts as $receipt) {
                 if (!$receipt->pagado)
                     $receipt->delete();
             }
+        };
+    }
+
+    public function getTotalReceipts() {
+        return function ($payed = true)
+        {
+            $total = 0;
+            $receipts = $this->getReceipts();
+            foreach ($receipts as $receipt) {
+                if ($payed && $receipt->pagado)
+                    $total += $receipt->importe;
+                else if (!$payed && !$receipt->pagado)
+                    $total += $receipt->importe;
+            }
+            return $total;
         };
     }
 }

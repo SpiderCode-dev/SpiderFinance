@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view>
+    <columns>
+        <column name="id" display="none">
+            <widget type="text" fieldname="idlinea"/>
+        </column>
+        <column name="product" display="none">
+            <widget type="text" fieldname="idproducto"/>
+        </column>
+        <column name="invoice" numcolumns="2">
+            <widget type="autocomplete" fieldname="idfactura" onclick="EditFacturaCliente" readonly="true"/>
+        </column>
+        <column name="installation" numcolumns="2">
+            <widget type="select" fieldname="id_installation" onclick="ListClienteInstalacion" readonly="true">
+                <values source="sfi_cliente_instalaciones" fieldcode="id" fieldtitle="id"/>
+            </widget>
+        </column>
+        <column name="reference" numcolumns="2">
+            <widget type="autocomplete" fieldname="referencia">
+                <values source="variantes" fieldcode="referencia"/>
+            </widget>
+        </column>
+        <column name="description" numcolumns="6">
+            <widget type="text" fieldname="descripcion"/>
+        </column>
+        <column name="quantity" numcolumns="2">
+            <widget type="number" fieldname="cantidad"/>
+        </column>
+        <column name="price" numcolumns="2">
+            <widget type="money" fieldname="pvpunitario"/>
+        </column>
+        <column name="dto" numcolumns="2">
+            <widget type="percentage" fieldname="dtopor"/>
+        </column>
+        <column name="net" numcolumns="2">
+            <widget type="money" fieldname="pvptotal" readonly="true"/>
+        </column>
+        <column name="tax" numcolumns="2">
+            <widget type="select" fieldname="codimpuesto">
+                <values source="impuestos" fieldcode="codimpuesto" fieldtitle="descripcion"/>
+            </widget>
+        </column>
+        <column name="Agregado" numcolumns="2">
+            <widget type="checkbox" fieldname="agregado" readonly="true"/>
+        </column>
+    </columns>
+</view>
