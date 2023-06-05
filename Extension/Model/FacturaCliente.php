@@ -5,6 +5,7 @@ namespace FacturaScripts\Plugins\SpiderFinance\Extension\Model;
 use FacturaScripts\Core\Base\DataBase\DataBaseWhere;
 use FacturaScripts\Dinamic\Model\Abono;
 use FacturaScripts\Plugins\SpiderFact\Lib\Constans;
+use FacturaScripts\Plugins\SpiderFinance\Model\LineaProgramada;
 
 class FacturaCliente
 {
@@ -66,6 +67,22 @@ class FacturaCliente
                     $total += $receipt->importe;
             }
             return $total;
+        };
+    }
+
+    public function generateLineaProgramada()
+    {
+        return function ($saldo)
+        {
+            $line = new LineaProgramada();
+            $line->descripcion = 'Saldo pendiente factura ' . $this->codigo;
+            $line->cantidad = 1;
+            $line->pvpunitario = $saldo;
+            $line->codimpuesto = 'IVA0';
+            $line->idfacturaold = $this->idfactura;
+            $line->iva = 0;
+
+            return $line->save();
         };
     }
 }

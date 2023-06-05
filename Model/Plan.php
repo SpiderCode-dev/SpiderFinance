@@ -41,10 +41,10 @@ class Plan extends ModelClass
         return 'sfi_planes';
     }
 
-    public function saveInsert(array $values = [])
+    public function save(): bool
     {
         if ($this->getProduct()) {
-            return parent::saveInsert($values);
+            return parent::save();
         }
 
         return false;

@@ -20,6 +20,9 @@
         <column name="description" order="140">
             <widget type="textarea" fieldname="descripcion"/>
         </column>
+        <column name="Agregado" order="140">
+            <widget type="checkbox" fieldname="agregado"/>
+        </column>
         <column name="quantity" display="right" order="150">
             <widget type="number" fieldname="cantidad"/>
         </column>

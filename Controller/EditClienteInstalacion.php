@@ -3,7 +3,6 @@
 namespace FacturaScripts\Plugins\SpiderFinance\Controller;
 
 use FacturaScripts\Core\Base\DataBase\DataBaseWhere;
-use FacturaScripts\Core\Lib\AssetManager;
 use FacturaScripts\Core\Lib\ExtendedController\EditController;
 use FacturaScripts\Dinamic\Model\Cliente;
 use FacturaScripts\Dinamic\Model\Contacto;
@@ -41,8 +40,6 @@ class EditClienteInstalacion extends EditController
     public function createRecursosView($viewName = 'ListProducto') {
         $this->addListView($viewName, 'Producto', 'Recursos');
         $this->views[$viewName]->disableColumn('customer');
-        $this->setSettings($viewName, 'btnNew', false);
-        $this->setSettings($viewName, 'btnDelete', false);
     }
 
     public function createLineasProgramadasView($viewName = 'ListLineaProgramada') {

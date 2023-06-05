@@ -11,9 +11,13 @@
   "zone": "Zona",
   "installations": "Instalaciones",
   "nap-boxes": "Cajas NAPs",
+  "no-lines": "No hay líneas para calcular",
+  "no-lines-or-more-than-one-line": "No hay líneas o hay más de una línea en el documento",
   "number-nap": "Número de NAP",
   "port-numbers": "Número de puertos",
   "manage-network": "Gestión de Red",
   "created_at" : "Creado",
-  "updated_at" : "Actualizado"
+  "updated_at" : "Actualizado",
+  "no-monthly-document": "No es documento mensual",
+  "period-dates-must-be-one-month": "Las fechas del periodo deben ser de un mes"
 }

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view>
+    <columns>
+        <group name="dates" numcolumns="12">
+            <column name="Value" description="El valor se calcula automáticamente" order="130">
+                <widget type="money" fieldname="firstvalue" readonly="true"/>
+            </column>
+        </group>
+    </columns>
+    <rows>
+        <row type="actions">
+            <button type="action" label="Calcular porcentaje de parciales" color="warning" action="calculate-partials" icon="fas fa-percentage"/>
+        </row>
+    </rows>
+</view>

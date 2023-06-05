@@ -5,9 +5,7 @@ namespace FacturaScripts\Plugins\SpiderFinance\Controller;
 use FacturaScripts\Core\Base\Calculator;
 use FacturaScripts\Core\Base\DataBase\DataBaseWhere;
 use FacturaScripts\Core\Base\ToolBox;
-use FacturaScripts\Core\Model\ReciboCliente;
 use FacturaScripts\Plugins\SpiderFact\Lib\Constans;
-use Symfony\Component\VarDumper\Cloner\Data;
 
 class EditFacturaCliente extends \FacturaScripts\Core\Controller\EditFacturaCliente
 {
@@ -103,7 +101,13 @@ class EditFacturaCliente extends \FacturaScripts\Core\Controller\EditFacturaClie
 
                 ToolBox::i18nLog()->notice('Documento pagado correctamente');
                 $this->payReceipts($model);
-                //TODO: Generar linea recurrente pendiente
+                $generated = $model->generateLineaProgramada($saldo);
+
+                if (!$generated) {
+                    $this->dataBase->rollback();
+                    ToolBox::i18nLog()->warning('No se ha podido generar la linea programada para el nuevo documento');
+                    return;
+                }
 
                 $this->dataBase->commit();
                 $this->redirect($model->url('edit'));
