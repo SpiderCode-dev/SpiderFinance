@@ -5,7 +5,7 @@
             <column name="cifnif" numcolumns="3">
                 <widget type="text" fieldname="cifnif" icon="fas fa-search"/>
             </column>
-            <column name="customer" numcolumns="3">
+            <column name="name" numcolumns="3">
                 <widget type="text" fieldname="nombrecliente" icon="fas fa-user"/>
             </column>
             <column name="Correo electrónico" numcolumns="3" >
@@ -19,8 +19,11 @@
                     <values source="contactos" fieldcode="idcontacto" fieldtitle="descripcion"/>
                 </widget>
             </column>
-            <column name="address" numcolumns="8" >
+            <column name="address" numcolumns="7" >
                 <widget type="text" fieldname="direccion" icon="fas fa-map-marker" />
+            </column>
+            <column name="status" numcolumns="2">
+                <widget type="text" fieldname="StatusName"  readonly="true"/>
             </column>
         </group>
 
@@ -30,20 +33,38 @@
                     <values source="sfi_planes" fieldcode="id" fieldtitle="name"/>
                 </widget>
             </column>
-            <column name="zone"  numcolumns="3">>
-                <widget type="select" fieldname="idzona" onclick="EditPlan">
-                    <values source="sfi_zonas" fieldcode="id" fieldtitle="name"/>
+            <column name="nap-box"  numcolumns="3">
+                <widget type="select" fieldname="idnap" onclick="EditCajaNap">
+                    <values source="sfi_cajas_nap" fieldcode="id" fieldtitle="code"/>
                 </widget>
             </column>
             <column name="Fecha de visita" numcolumns="3">
                 <widget type="datetime" fieldname="visitdate"/>
             </column>
             <column name="Fecha de instalación" numcolumns="3">
-                <widget type="datetime" fieldname="setupdate"/>
+                <widget type="datetime" fieldname="setupdate" readonly="true"/>
             </column>
 
             <column name="Observations" numcolumns="12" >
                 <widget type="textarea" fieldname="observations"/>
+            </column>
+        </group>
+
+        <group name="payment" numcolumns="12" title="Configuración de pagos" icon="fas fa-file-invoice-dollar">
+            <column name="warehouse" numcolumns="3">
+                <widget type="select" fieldname="codalmacen" onclick="EditAlmacen">
+                    <values source="almacenes" fieldcode="codalmacen" fieldtitle="nombre"/>
+                </widget>
+            </column>
+            <column name="serie"  numcolumns="3">
+                <widget type="select" fieldname="codserie" onclick="EditSerie">
+                    <values source="series" fieldcode="codserie" fieldtitle="descripcion"/>
+                </widget>
+            </column>
+            <column name="payment-method"  numcolumns="3">
+                <widget type="select" fieldname="codpago" onclick="EditFormaPago">
+                    <values source="formaspago" fieldcode="codpago" fieldtitle="descripcion"/>
+                </widget>
             </column>
         </group>
     </columns>

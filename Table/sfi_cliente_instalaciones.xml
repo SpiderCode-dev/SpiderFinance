@@ -16,15 +16,6 @@
     </constraint>
 
     <column>
-        <name>idzone</name>
-        <type>integer</type>
-    </column>
-    <constraint>
-        <name>sfi_cliente_instalaciones_idzone_fkey</name>
-        <type>FOREIGN KEY (idzone) REFERENCES sfi_zonas(id) ON DELETE CASCADE ON UPDATE SET NULL</type>
-    </constraint>
-
-    <column>
         <name>idnap</name>
         <type>integer</type>
     </column>
@@ -82,7 +73,10 @@
         <name>sfi_cliente_id_contacto_fkey</name>
         <type>FOREIGN KEY (idcontacto) REFERENCES contactos(idcontacto) ON DELETE CASCADE ON UPDATE CASCADE</type>
     </constraint>
-
+    <constraint>
+        <name>uniq_idcontacto_id</name>
+        <type>UNIQUE (id,idcontacto)</type>
+    </constraint>
     <column>
         <name>codcliente</name>
         <type>character varying(10)</type>
