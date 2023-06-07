@@ -14,7 +14,6 @@ class EditClienteInstalacion extends EditController
         $data = parent::getPageData();
         $data['title'] = 'installation';
         return $data;
-
     }
 
     public function getModelClassName()
@@ -60,7 +59,7 @@ class EditClienteInstalacion extends EditController
             $model->status = ClienteInstalacion::STATUS_PENDING;
             $model->save();
         }
-
+        $this->showButtons();
         return parent::execPreviousAction($action);
     }
 

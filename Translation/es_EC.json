@@ -1,7 +1,5 @@
 {
   "sales": "Finanzas",
-  "warehouse": "Sucursal",
-  "warehouses": "Sucursales",
   "plans": "Planes",
   "coords": "Coordenadas",
   "network": "Red",
@@ -9,7 +7,7 @@
   "zones": "Zonas",
   "nap-box": "NAP",
   "zone": "Zona",
-  "installations": "Instalaciones",
+  "installations": "Líneas de instalación",
   "nap-boxes": "Cajas NAPs",
   "no-lines": "No hay líneas para calcular",
   "no-lines-or-more-than-one-line": "No hay líneas o hay más de una línea en el documento",

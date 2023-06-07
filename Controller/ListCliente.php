@@ -8,7 +8,7 @@ class ListCliente extends \FacturaScripts\Core\Controller\ListCliente
     {
         $data = parent::getPageData();
         $data['menu'] = 'customers';
-        $data['title'] = 'users';
+        $data['title'] = 'customers';
         $data['icon'] = 'fas fa-users';
         return $data;
     }

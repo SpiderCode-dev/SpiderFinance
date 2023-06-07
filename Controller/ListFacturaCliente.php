@@ -9,7 +9,7 @@ class ListFacturaCliente extends \FacturaScripts\Core\Controller\ListFacturaClie
     {
         $data = parent::getPageData();
         $data['menu'] = 'sales';
-        $data['title'] = 'payments';
+        $data['title'] = 'receipts';
         return $data;
     }
 

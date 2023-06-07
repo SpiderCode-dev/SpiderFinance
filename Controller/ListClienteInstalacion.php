@@ -19,10 +19,20 @@ class ListClienteInstalacion extends ListController
 
     protected function createViews()
     {
-        $this->addView('ListInstalacionRegister', 'ClienteInstalacion', 'Registradas', 'fas fa-wrench');
-        $this->addView('ListInstalacionPending', 'ClienteInstalacion', 'Pendientes', 'fas fa-wrench');
-        $this->addView('ListInstalacionInstalled', 'ClienteInstalacion', 'Instaladas', 'fas fa-wrench');
-        $this->addView('ListInstalacionCancelled', 'ClienteInstalacion', 'Canceladas', 'fas fa-wrench');
+        $this->addView('ListInstalacionRegister', 'ClienteInstalacion', 'Registradas', 'fas fa-book');
+        $this->addView('ListInstalacionPending', 'ClienteInstalacion', 'Pendientes', 'fas fa-stopwatch');
+        $this->addView('ListInstalacionInstalled', 'ClienteInstalacion', 'Instaladas', 'fas fa-ethernet');
+        $this->addView('ListInstalacionCancelled', 'ClienteInstalacion', 'Canceladas', 'fas fa-ban');
+
+        $views = [
+            'ListInstalacionPending',
+            'ListInstalacionInstalled',
+            'ListInstalacionCancelled',
+        ];
+
+        foreach ($views as $view) {
+            $this->setSettings($view, 'btnNew', false);
+        }
     }
 
     public function loadData($viewName, $view)
