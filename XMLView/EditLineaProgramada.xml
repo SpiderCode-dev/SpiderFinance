@@ -11,7 +11,7 @@
             <widget type="autocomplete" fieldname="idfactura" onclick="EditFacturaCliente" readonly="true"/>
         </column>
         <column name="installation" numcolumns="2">
-            <widget type="select" fieldname="id_installation" onclick="ListClienteInstalacion" readonly="true">
+            <widget type="select" fieldname="id_installation" onclick="EditClienteInstalacion" readonly="true">
                 <values source="sfi_cliente_instalaciones" fieldcode="id" fieldtitle="id"/>
             </widget>
         </column>
@@ -40,8 +40,8 @@
                 <values source="impuestos" fieldcode="codimpuesto" fieldtitle="descripcion"/>
             </widget>
         </column>
-        <column name="Agregado" numcolumns="2">
-            <widget type="checkbox" fieldname="agregado" readonly="true"/>
+        <column name="Diferir (meses)" numcolumns="2" description="Dejar en blanco para no diferir">
+            <widget type="number" fieldname="diferir"/>
         </column>
     </columns>
 </view>

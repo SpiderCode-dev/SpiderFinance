@@ -10,13 +10,12 @@ class LineaProgramada extends LineaFacturaCliente
     public $id_installation;
     public $agregado;
     public $fecha_ingresado;
-
+    public $fecha_agregado;
 
     public static function primaryColumn(): string
     {
         return 'idlinea';
     }
-
     public static function tableName(): string
     {
         return 'sfi_lineas_programadas';
@@ -27,4 +26,12 @@ class LineaProgramada extends LineaFacturaCliente
         return ModelClass::url($type, $list);
     }
 
+    public function delete(): bool
+    {
+        if ($this->agregado) {
+            return false;
+        }
+
+        return parent::delete();
+    }
 }

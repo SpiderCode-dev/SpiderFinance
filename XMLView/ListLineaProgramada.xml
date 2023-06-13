@@ -29,16 +29,5 @@
         <column name="price" display="right" order="170">
             <widget type="money" fieldname="pvpunitario"/>
         </column>
-        <column name="dto" display="right" order="180">
-            <widget type="percentage" fieldname="dtopor"/>
-        </column>
-        <column name="net" display="right" order="210">
-            <widget type="money" fieldname="pvptotal">
-                <option color="danger">lt:0</option>
-            </widget>
-        </column>
-        <column name="tax" display="right" order="220">
-            <widget type="percentage" fieldname="iva"/>
-        </column>
     </columns>
 </view>

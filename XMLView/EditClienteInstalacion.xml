@@ -45,7 +45,7 @@
                 <widget type="datetime" fieldname="setupdate" readonly="true"/>
             </column>
 
-            <column name="Observations" numcolumns="12" >
+            <column name="observations" numcolumns="12" >
                 <widget type="textarea" fieldname="observations"/>
             </column>
         </group>

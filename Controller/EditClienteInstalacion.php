@@ -59,7 +59,7 @@ class EditClienteInstalacion extends EditController
             $model->status = ClienteInstalacion::STATUS_PENDING;
             $model->save();
         }
-        $this->showButtons();
+//        $this->showButtons();
         return parent::execPreviousAction($action);
     }
 

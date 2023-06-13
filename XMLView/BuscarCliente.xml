@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<view>
+    <columns>
+        <group name="Buscar cliente" numcolumns="12" icon="fas fa-user">
+            <column name="customer" numcolumns="5">
+                <widget type="autocomplete" fieldname="codcliente" onclick="EditCliente">
+                    <values source="clientes" fieldcode="codcliente" fieldtitle="razonsocial"/>
+                </widget>
+            </column>
+        </group>
+    </columns>
+    <rows>
+        <row type="actions">
+            <button type="action" label="Buscar cliente" color="info" action="search-customer" icon="fas fa-search"/>
+        </row>
+    </rows>
+</view>

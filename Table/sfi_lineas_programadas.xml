@@ -134,11 +134,16 @@
     </column>
 
     <column>
+        <name>fecha_agregado</name>
+        <type>datetime</type>
+    </column>
+
+    <column>
         <name>agregado</name>
         <type>boolean</type>
         <default>false</default>
     </column>
-
+w
     <column>
         <name>idfacturaold</name>
         <type>integer</type>
