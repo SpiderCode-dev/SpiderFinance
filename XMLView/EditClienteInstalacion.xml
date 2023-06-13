@@ -44,7 +44,12 @@
             <column name="Fecha de instalación" numcolumns="3">
                 <widget type="datetime" fieldname="setupdate" readonly="true"/>
             </column>
-
+            <column name="val_installation" numcolumns="3" description="Dejar en 0 para agregar manualmente, o diferir con Extras de instalación">
+                <widget type="money" fieldname="val_installation" readonly="dinamic" />
+            </column>
+            <column name="Generar documento de instalación" numcolumns="4" description="Si: Se genera un recibo con el valor de instalación &lt;br&gt; No: El valor de instalación se agregará al primer recibo mensual">
+                <widget type="checkbox" fieldname="generate_document" onclick="EditValInstallation" />
+            </column>
             <column name="observations" numcolumns="12" >
                 <widget type="textarea" fieldname="observations"/>
             </column>

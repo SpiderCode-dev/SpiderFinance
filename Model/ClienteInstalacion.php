@@ -9,6 +9,8 @@ use FacturaScripts\Core\Model\Base\ModelTrait;
 use FacturaScripts\Dinamic\Model\Cliente;
 use FacturaScripts\Dinamic\Model\Contacto;
 use FacturaScripts\Dinamic\Model\DocRecurringSaleLine;
+use FacturaScripts\Dinamic\Model\FacturaCliente;
+use FacturaScripts\Dinamic\Model\LineaFacturaCliente;
 use FacturaScripts\Plugins\DocumentosRecurrentes\Model\DocRecurringSale;
 
 class ClienteInstalacion extends ModelClass
@@ -16,6 +18,8 @@ class ClienteInstalacion extends ModelClass
     use ModelTrait;
 
     public $id;
+    public $val_installation;
+    public $generate_document;
 
     const STATUS_REGISTER = 0;
     const STATUS_PENDING = 1;
@@ -87,7 +91,7 @@ class ClienteInstalacion extends ModelClass
         }
 
         //Use customer
-        $this->status = self::STATUS_PENDING;
+        $this->status = self::STATUS_INSTALLED;
         $customer = $this->getCustomer();
         if (!$customer) {
             return false;
@@ -122,6 +126,42 @@ class ClienteInstalacion extends ModelClass
         if (!$line->save()) {
             return false;
         }
+        //Todo: Create document or line with installation value
+        if ($this->val_installation > 0) {
+            if ($this->generate_document) {
+                //Create document
+                $invoice = new FacturaCliente();
+                $invoice->codcliente = $customer->codcliente;
+                $invoice->codpago = $data['codpago'];
+                $invoice->codserie = $data['codserie'];
+                $invoice->codalmacen = $data['codalmacen'];
+                $invoice->fecha = date('Y-m-d');
+                $invoice->id_installation = $this->id;
+                if (!$invoice->save()) {
+                    return false;
+                }
+
+                //Create line
+                $line = new LineaFacturaCliente();
+                $line->idfactura = $invoice->idfactura;
+                $line->descripcion = "Valor de Instalación";
+                $line->cantidad = 1;
+                $line->pvpunitario = $this->val_installation;
+                if (!$line->save()) {
+                    return false;
+                }
+            } else {
+                //Create line
+                $line = new LineaProgramada();
+                $line->id_installation = $this->id;
+                $line->descripcion = "Valor de Instalación";
+                $line->cantidad = 1;
+                $line->pvpunitario = $this->val_installation;
+                if (!$line->save()) {
+                    return false;
+                }
+            }
+        }
 
         return $this->save();
     }
@@ -138,6 +178,7 @@ class ClienteInstalacion extends ModelClass
         if (!$contacto->save()) {
             return false;
         }
+
 
         //Create customer
         $customer = $contacto->getCustomer(true);

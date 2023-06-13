@@ -69,6 +69,18 @@
         <type>integer</type>
     </column>
 
+    <column>
+        <name>val_installation</name>
+        <type>double</type>
+        <default>0</default>
+    </column>
+
+    <column>
+        <name>generate_document</name>
+        <type>boolean</type>
+        <default>false</default>
+    </column>
+
     <constraint>
         <name>sfi_cliente_id_contacto_fkey</name>
         <type>FOREIGN KEY (idcontacto) REFERENCES contactos(idcontacto) ON DELETE CASCADE ON UPDATE CASCADE</type>

@@ -35,7 +35,8 @@ class EditClienteInstalacion extends EditController
         if ($action == 'setup-install') {
             $model = $this->getModel();
             $model->loadFromCode($this->request->query->get('code'));
-            if ($model->status != ClienteInstalacion::STATUS_REGISTER) {
+            if ($model->status != ClienteInstalacion::STATUS_PENDING &&
+                $model->status != ClienteInstalacion::STATUS_REGISTER) {
                 $this->toolBox()->i18nLog()->warning('Instalación ya configurada.');
                 return;
             }
@@ -59,7 +60,7 @@ class EditClienteInstalacion extends EditController
             $model->status = ClienteInstalacion::STATUS_PENDING;
             $model->save();
         }
-//        $this->showButtons();
+        $this->createViews();
         return parent::execPreviousAction($action);
     }
 
