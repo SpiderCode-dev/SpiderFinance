@@ -27,6 +27,7 @@ class EditClienteInstalacion extends EditController
         $this->createRecurrentView();
         $this->createRecursosView();
         $this->createLineasProgramadasView();
+        $this->createDocumentsView();
         $this->showButtons();
     }
 
@@ -101,8 +102,15 @@ class EditClienteInstalacion extends EditController
         $this->views[$viewName]->disableColumn('customer');
     }
 
+    public function createDocumentsView($viewName = 'ListFacturaCliente') {
+        $this->addListView($viewName, 'FacturaCliente', 'Pagos de cliente', 'fas fa-file-invoice');
+        $this->views[$viewName]->addOrderBy(['fecha'], 'date', 2);
+        $this->views[$viewName]->addFilterPeriod('fecha', 'date', 'fecha');
+        $this->views[$viewName]->addFilterCheckbox('pagada', 'paid', 'pagada');
+    }
+
     public function createLineasProgramadasView($viewName = 'ListLineaProgramada') {
-        $this->addListView($viewName, 'LineaProgramada', 'Extras de instalación', 'fas fa-file-invoice');
+        $this->addListView($viewName, 'LineaProgramada', 'Extras de instalación', 'fas fa-cart-plus');
     }
 
     public function loadData($viewName, $view)
@@ -110,30 +118,31 @@ class EditClienteInstalacion extends EditController
         parent::loadData($viewName, $view);
         $mainModel = $this->getModel();
 
-        if ($viewName == $this->getMainViewName())
-            if ($mainModel->exists()  && $mainModel->idcontacto) {
-                $contact = (new Contacto())->get($mainModel->idcontacto);
-                $client = $contact->getCustomer();
+        switch ($viewName) {
+            case $this->getMainViewName():
+                if ($mainModel->exists()  && $mainModel->idcontacto) {
+                    $contact = (new Contacto())->get($mainModel->idcontacto);
+                    $client = $contact->getCustomer();
 
-                $mainModel->cifnif = $client->cifnif;
-                $mainModel->nombrecliente = $client->razonsocial;
-                $mainModel->email = $contact->email;
-                $mainModel->telefono = $contact->telefono1;
-                $mainModel->direccion = $contact->direccion;
+                    $mainModel->cifnif = $client->cifnif;
+                    $mainModel->nombrecliente = $client->razonsocial;
+                    $mainModel->email = $contact->email;
+                    $mainModel->telefono = $contact->telefono1;
+                    $mainModel->direccion = $contact->direccion;
 
-                // TODO: Load Recurring doc
-                // TODO: Edit data update contact
+                    // TODO: Load Recurring doc
+                    // TODO: Edit data update contact
 
-            }
+                }
+                break;
 
-        if ($viewName == 'ListLineaProgramada') {
-            $where = [new DataBaseWhere('id_installation', $mainModel->primaryColumnValue())];
-            $view->loadData('', $where);
-        }
+            case 'ListLineaProgramada':
+            case 'ListDocRecurringSale':
+            case 'ListFacturaCliente':
+                $where = [new DataBaseWhere('id_installation', $mainModel->primaryColumnValue())];
+                $view->loadData('', $where);
+                break;
 
-        if ($viewName == 'ListDocRecurringSale') {
-            $where = [new DataBaseWhere('id_installation', $mainModel->id)];
-            $view->loadData('', $where);
         }
     }
 

@@ -3,6 +3,7 @@
 namespace FacturaScripts\Plugins\SpiderFinance\Model;
 
 use FacturaScripts\Core\App\AppSettings;
+use FacturaScripts\Core\Base\DataBase;
 use FacturaScripts\Core\Base\ToolBox;
 use FacturaScripts\Core\Model\Base\ModelClass;
 use FacturaScripts\Core\Model\Base\ModelTrait;
@@ -97,6 +98,9 @@ class ClienteInstalacion extends ModelClass
             return false;
         }
 
+        $db = new DataBase();
+        $db->beginTransaction();
+
         //Create recurring doc
         $doc = new DocRecurringSale();
         $doc->codpago = $data['codpago'];
@@ -132,6 +136,8 @@ class ClienteInstalacion extends ModelClass
                 //Create document
                 $invoice = new FacturaCliente();
                 $invoice->codcliente = $customer->codcliente;
+                $invoice->cifnif = $customer->cifnif;
+                $invoice->nombrecliente = $customer->nombre;
                 $invoice->codpago = $data['codpago'];
                 $invoice->codserie = $data['codserie'];
                 $invoice->codalmacen = $data['codalmacen'];
@@ -145,8 +151,8 @@ class ClienteInstalacion extends ModelClass
                 $line = new LineaFacturaCliente();
                 $line->idfactura = $invoice->idfactura;
                 $line->descripcion = "Valor de Instalación";
-                $line->cantidad = 1;
                 $line->pvpunitario = $this->val_installation;
+                $line->cantidad = 1;
                 if (!$line->save()) {
                     return false;
                 }
@@ -163,7 +169,13 @@ class ClienteInstalacion extends ModelClass
             }
         }
 
-        return $this->save();
+        if ($this->save()) {
+            $db->commit();
+            return true;
+        }
+
+        $db->rollBack();
+        return false;
     }
 
     public function init($data)
