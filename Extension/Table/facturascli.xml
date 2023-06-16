@@ -12,6 +12,6 @@
     </column>
     <constraint>
         <name>ca_id_installation_facturascli</name>
-        <type>FOREIGN KEY (id_installation) REFERENCES sfi_cliente_instalaciones(id) ON DELETE SET NULL ON UPDATE CASCADE</type>
+        <type>FOREIGN KEY (id_installation) REFERENCES sfi_cliente_instalaciones(id) ON DELETE RESTRICT ON UPDATE CASCADE</type>
     </constraint>
 </table>

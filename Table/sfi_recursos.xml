@@ -10,6 +10,10 @@
         <type>serial</type>
         <null>NO</null>
     </column>
+    <constraint>
+        <name>sf_sfi_recursos_primary_key</name>
+        <type>PRIMARY KEY (id)</type>
+    </constraint>
     <column>
         <name>no_serie</name>
         <type>varchar(120)</type>
@@ -21,11 +25,11 @@
     </column>
     <column>
         <name>referencia</name>
-        <type>integer</type>
+        <type>character varying(30)</type>
         <null>NO</null>
     </column>
     <constraint>
-        <name>ca_sfi_recursos_productos</name>
+        <name>ca_sfi_recursos_variantes</name>
         <type>FOREIGN KEY (referencia) REFERENCES variantes(referencia) ON DELETE SET NULL ON UPDATE CASCADE</type>
     </constraint>
     <column>
