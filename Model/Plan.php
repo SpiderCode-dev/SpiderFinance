@@ -50,6 +50,16 @@ class Plan extends ModelClass
         return false;
     }
 
+    public function saveInsert(array $values = []): bool
+    {
+        if (parent::saveInsert($values)) {
+            $this->getProduct();
+            return true;
+        }
+
+        return false;
+    }
+
     public function getProduct()
     {
         $product = new Producto();

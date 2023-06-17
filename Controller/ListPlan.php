@@ -11,7 +11,7 @@ class ListPlan extends ListController
         $data = parent::getPageData();
         $data['menu'] = 'services';
         $data['title'] = 'plans';
-        $data['icon'] = 'fas fa-list';
+        $data['icon'] = 'fas fa-wifi';
         return $data;
     }
 

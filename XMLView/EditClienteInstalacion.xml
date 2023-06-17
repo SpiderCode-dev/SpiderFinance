@@ -55,7 +55,7 @@
             </column>
         </group>
 
-        <group name="payment" numcolumns="12" title="Configuración de pagos" icon="fas fa-file-invoice-dollar">
+        <group name="payment" numcolumns="12" title="Configuración de pagos" icon="fas fa-file-invoice-dollar" description="Configurar antes de cambiar de estado a Iniciar Instalación">
             <column name="warehouse" numcolumns="3">
                 <widget type="select" fieldname="codalmacen" onclick="EditAlmacen">
                     <values source="almacenes" fieldcode="codalmacen" fieldtitle="nombre"/>
@@ -69,6 +69,11 @@
             <column name="payment-method"  numcolumns="3">
                 <widget type="select" fieldname="codpago" onclick="EditFormaPago">
                     <values source="formaspago" fieldcode="codpago" fieldtitle="descripcion"/>
+                </widget>
+            </column>
+            <column name="agent" titleurl="ListAgente" numcolumns="3">
+                <widget type="select" fieldname="codagente" onclick="EditAgente" icon="fas fa-user-tie">
+                    <values source="agentes" fieldcode="codagente" fieldtitle="nombre"/>
                 </widget>
             </column>
         </group>

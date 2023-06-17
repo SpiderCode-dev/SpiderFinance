@@ -21,12 +21,9 @@
             </widget>
         </column>
         <column name="agent" order="110">
-            <widget type="autocomplete" fieldname="codagente" onclick="EditPlan">
-                <values source="agentes" fieldcode="codagente" fieldtitle="name"/>
+            <widget type="autocomplete" fieldname="codagente" onclick="EditAgente">
+                <values source="agentes" fieldcode="codagente" fieldtitle="nombre"/>
             </widget>
-        </column>
-        <column name="zone" order="110">
-            <widget type="date" fieldname="setupdate" />
         </column>
         <column name="observations" order="110">
             <widget type="text" fieldname="observations" />

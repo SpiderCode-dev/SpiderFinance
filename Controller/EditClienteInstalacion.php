@@ -5,6 +5,7 @@ namespace FacturaScripts\Plugins\SpiderFinance\Controller;
 use FacturaScripts\Core\Base\DataBase\DataBaseWhere;
 use FacturaScripts\Core\Lib\ExtendedController\EditController;
 use FacturaScripts\Dinamic\Model\Contacto;
+use FacturaScripts\Dinamic\Model\DocRecurringSale;
 use FacturaScripts\Plugins\SpiderFinance\Model\ClienteInstalacion;
 
 class EditClienteInstalacion extends EditController
@@ -131,8 +132,11 @@ class EditClienteInstalacion extends EditController
                     $mainModel->direccion = $contact->direccion;
 
                     // TODO: Load Recurring doc
+                    $recurring = new DocRecurringSale();
+                    $exists = $recurring->loadFromCode('', [
+                        new DataBaseWhere('id_installation', $mainModel->primaryColumnValue())
+                    ]);
                     // TODO: Edit data update contact
-
                 }
                 break;
 

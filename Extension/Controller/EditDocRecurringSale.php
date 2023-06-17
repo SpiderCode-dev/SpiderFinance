@@ -4,11 +4,18 @@ namespace FacturaScripts\Plugins\SpiderFinance\Extension\Controller;
 
 use FacturaScripts\Core\Base\DataBase\DataBaseWhere;
 use FacturaScripts\Core\Base\ToolBox;
+use FacturaScripts\Dinamic\Lib\AssetManager;
 use FacturaScripts\Dinamic\Model\Base\DocRecurring;
 use FacturaScripts\Dinamic\Model\Variante;
 
 class EditDocRecurringSale
 {
+    public function createViews() {
+        return function () {
+            AssetManager::add('js', '/Dinamic/Assets/JS/DocRecurringSaleFi.js');
+        };
+    }
+
     public function execPreviousAction() {
         return function ($action) {
             if ($action == 'calculate-partials') {
@@ -44,12 +51,25 @@ class EditDocRecurringSale
                new DataBaseWhere('referencia', $lines[0]->reference)
            ]);
 
-           $monthDays = intval($this->currentMonthDays());
-           $cDay = intval(date('d'));
+           if (!$variant->exists()) {
+               ToolBox::log()->warning('variant-plan-not-found');
+               return;
+           }
 
-           $percentage = 100 - ($cDay * 100) / $monthDays;
+           $vPlan = $variant->precio;
+           $monthDays = (int) $this->currentMonthDays(strtotime($mainModel->startdate));
+           $currentDay = intval(date('d', strtotime($mainModel->startdate)));
+           $vPagar = ($vPlan * $currentDay) / $monthDays;
+
+           if ($mainModel->firstdate) {
+               $monthDays = (int) $this->currentMonthDays(strtotime($mainModel->firstdate));
+               $currentDay = intval(date('d', strtotime($mainModel->firstdate)));
+               $vPagar += ($vPlan * $currentDay) / $monthDays;
+           }
+
+           $percentage = ($vPagar / $vPlan) * 100;
            $mainModel->firstpct = round($percentage);
-           $mainModel->firstvalue = round(($percentage / 100) * $variant->precio, 2);
+           $mainModel->firstvalue = round(($percentage / 100) * $vPlan, 2);
            $mainModel->save();
        };
     }
@@ -57,9 +77,9 @@ class EditDocRecurringSale
 
     public function currentMonthDays()
     {
-       return function () {
-           $cMonth = intval(date('m'));
-           $cYear = intval(date('Y'));
+       return function ($strTime = null) {
+           $cMonth = intval(date('m', $strTime));
+           $cYear = intval(date('Y', $strTime));
            //return \cal_days_in_month(CAL_GREGORIAN, $cMonth, $cYear);
            return date('t', mktime(0, 0, 0, $cMonth, 1, $cYear));
        };

@@ -75,12 +75,13 @@ class FacturaCliente
         return function ($saldo)
         {
             $line = new LineaProgramada();
-            $line->descripcion = 'Saldo pendiente factura ' . $this->codigo;
+            $line->iva = 0;
             $line->cantidad = 1;
             $line->pvpunitario = $saldo;
+            $line->descripcion = 'Saldo pendiente factura ' . $this->codigo;
             $line->codimpuesto = 'IVA0';
             $line->idfacturaold = $this->idfactura;
-            $line->iva = 0;
+            $line->id_installation = $this->id_installation;
 
             return $line->save();
         };

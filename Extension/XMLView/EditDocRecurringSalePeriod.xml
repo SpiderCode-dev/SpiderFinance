@@ -3,7 +3,7 @@
     <columns>
         <group name="dates" numcolumns="12">
             <column name="Value" description="El valor se calcula automáticamente" order="130">
-                <widget type="money" fieldname="firstvalue" readonly="true"/>
+                <widget type="money" fieldname="firstvalue"/>
             </column>
         </group>
     </columns>

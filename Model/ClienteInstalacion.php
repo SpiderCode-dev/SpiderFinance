@@ -191,7 +191,6 @@ class ClienteInstalacion extends ModelClass
             return false;
         }
 
-
         //Create customer
         $customer = $contacto->getCustomer(true);
         if (!$customer->save()) {
@@ -200,7 +199,7 @@ class ClienteInstalacion extends ModelClass
 
         $this->codcliente = $customer->codcliente;
         $this->idcontacto = $contacto->idcontacto;
-
+        $this->codagente = $data['codagente'];
         return $this->save();
     }
 

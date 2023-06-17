@@ -26,8 +26,7 @@
     <column>
         <name>referencia</name>
         <type>character varying(30)</type>
-        <null>NO</null>
-    </column>
+   </column>
     <constraint>
         <name>ca_sfi_recursos_variantes</name>
         <type>FOREIGN KEY (referencia) REFERENCES variantes(referencia) ON DELETE SET NULL ON UPDATE CASCADE</type>
