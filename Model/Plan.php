@@ -9,7 +9,6 @@ use FacturaScripts\Dinamic\Model\Producto;
 
 class Plan extends ModelClass
 {
-
     public $id;
     public $name;
     public $description;
@@ -41,19 +40,9 @@ class Plan extends ModelClass
         return 'sfi_planes';
     }
 
-    public function save(): bool
-    {
-        if ($this->getProduct()) {
-            return parent::save();
-        }
-
-        return false;
-    }
-
     public function saveInsert(array $values = []): bool
     {
-        if (parent::saveInsert($values)) {
-            $this->getProduct();
+        if (parent::saveInsert($values) && $this->getProduct()) {
             return true;
         }
 

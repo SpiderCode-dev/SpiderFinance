@@ -58,6 +58,9 @@ class LineaProgramada extends SalesDocumentLine
         // servido will always be 0 to prevent stock problems when removing rectified invoices
         $this->servido = 0.0;
         $this->fecha_ingresado = date('Y-m-d H:i:s');
+        if (empty($this->idproducto)) {
+            $this->idproducto = null;
+        }
         return parent::test();
     }
 

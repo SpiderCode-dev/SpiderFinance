@@ -169,6 +169,7 @@ class ClienteInstalacion extends ModelClass
             }
         }
 
+        $this->setupdate = date('Y-m-d H:i:s');
         if ($this->save()) {
             $db->commit();
             return true;

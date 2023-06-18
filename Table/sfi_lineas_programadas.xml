@@ -62,6 +62,7 @@
     <column>
         <name>idproducto</name>
         <type>integer</type>
+        <null>YES</null>
     </column>
     <column>
         <name>irpf</name>

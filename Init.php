@@ -2,6 +2,7 @@
 namespace FacturaScripts\Plugins\SpiderFinance;
 
 use FacturaScripts\Core\Base\InitClass;
+use FacturaScripts\Dinamic\Model\Producto;
 use FacturaScripts\Plugins\SpiderFinance\Model\Abono;
 use FacturaScripts\Plugins\SpiderFinance\Model\CajaNap;
 use FacturaScripts\Plugins\SpiderFinance\Model\ClienteInstalacion;
@@ -22,6 +23,7 @@ class Init extends InitClass
     }
     public function update()
     {
+        new Producto();
         new ClienteInstalacion();
         new Zona();
         new Abono();

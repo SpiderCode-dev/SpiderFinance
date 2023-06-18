@@ -15,18 +15,21 @@
                 <values source="sfi_planes" fieldcode="id" fieldtitle="name"/>
             </widget>
         </column>
-        <column name="agent" order="110">
-            <widget type="autocomplete" fieldname="codagente" onclick="EditPlan">
-                <values source="agentes" fieldcode="codagente" fieldtitle="name"/>
+        <column name="nap-box" order="110">
+            <widget type="autocomplete" fieldname="idnap" onclick="EditPlan">
+                <values source="sfi_cajas_nap" fieldcode="id" fieldtitle="code"/>
             </widget>
         </column>
-        <column name="zone" order="110">
-            <widget type="autocomplete" fieldname="idzone" onclick="EditZona">
-                <values source="sfi_zonas" fieldcode="id" fieldtitle="name"/>
+        <column name="agent" order="110">
+            <widget type="autocomplete" fieldname="codagente" onclick="EditAgente">
+                <values source="agentes" fieldcode="codagente" fieldtitle="nombre"/>
             </widget>
         </column>
         <column name="observations" order="110">
             <widget type="text" fieldname="observations" />
+        </column>
+        <column name="status" order="110">
+            <widget type="text" fieldname="status" />
         </column>
     </columns>
 </view>

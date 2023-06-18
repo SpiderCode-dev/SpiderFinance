@@ -6,7 +6,7 @@ $(document).ready(function () {
         let value = $(this).val();
         let percentage = (value * 100) / total;
         if (value !== 0) {
-            $('#formEditDocRecurringSalePeriod input[name="firstpct"]').val(percentage.toFixed(2));
+            $('#formEditDocRecurringSalePeriod input[name="firstpct"]').val(parseInt(percentage));
         }
     });
 })
