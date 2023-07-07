@@ -39,6 +39,11 @@
     </column>
 
     <column>
+        <name>closedate</name>
+        <type>datetime</type>
+    </column>
+
+    <column>
         <name>setupdate</name>
         <type>datetime</type>
     </column>

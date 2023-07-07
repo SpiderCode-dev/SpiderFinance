@@ -8,7 +8,17 @@
             <column name="typedoc" display="none">
                 <widget type="text" fieldname="typedoc"/>
             </column>
-            <column name="concept" numcolumns="8" description="Escribir una referencia del pago (Ej: número de comprobante)">
+            <column name="invoice" numcolumns="2">
+                <widget type="select" fieldname="iddocument" onclick="EditFacturaCliente" readonly="true">
+                    <values fieldcode="idfactura" fieldtitle="codigo" source="facturascli"/>
+                </widget>
+            </column>
+            <column name="customer">
+                <widget type="autocomplete" fieldname="codcliente" onclick="EditCliente" readonly="true">
+                    <values source="Cliente" fieldcode="codcliente" fieldtitle="nombre"/>
+                </widget>
+            </column>
+            <column name="concept" numcolumns="6" description="Escribir una referencia del pago (Ej: número de comprobante)">
                 <widget type="text" fieldname="concept"/>
             </column>
             <column name="value" numcolumns="2">

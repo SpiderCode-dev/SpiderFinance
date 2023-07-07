@@ -1,6 +1,7 @@
 <?php
 namespace FacturaScripts\Plugins\SpiderFinance;
 
+use Dompdf\Exception;
 use FacturaScripts\Core\Base\InitClass;
 use FacturaScripts\Dinamic\Model\Producto;
 use FacturaScripts\Plugins\SpiderFinance\Model\Abono;
@@ -20,6 +21,7 @@ class Init extends InitClass
         $this->loadExtension(new Extension\Model\FacturaCliente());
         $this->loadExtension(new Extension\Model\LineaFacturaCliente());
         $this->loadExtension(new Extension\Controller\EditDocRecurringSale());
+        $this->loadExtension(new Extension\Controller\ListFacturaCliente());
     }
     public function update()
     {

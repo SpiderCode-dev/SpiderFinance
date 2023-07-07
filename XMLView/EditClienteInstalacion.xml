@@ -41,6 +41,10 @@
             <column name="Fecha de visita" numcolumns="3">
                 <widget type="datetime" fieldname="visitdate"/>
             </column>
+            <column name="Fecha de corte" numcolumns="3">
+                <widget type="datetime" fieldname="closedate"/>
+            </column>
+
             <column name="Fecha de instalación" numcolumns="3">
                 <widget type="datetime" fieldname="setupdate" readonly="true"/>
             </column>

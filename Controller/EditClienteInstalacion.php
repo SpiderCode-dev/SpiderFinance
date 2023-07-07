@@ -62,10 +62,17 @@ class EditClienteInstalacion extends EditController
             $model->status = ClienteInstalacion::STATUS_PENDING;
             $model->save();
         }
+
+        if ($action == 'insert' && $this->active == 'EditClienteInstalacion') {
+            if (empty($this->user->codagente)) {
+                $this->toolBox()->i18nLog()->warning("No se puede crear la instalación, el usuario {$this->user->nick} no tiene asignado un agente.");
+                return false;
+            }
+        }
+
         $this->createViews();
         return parent::execPreviousAction($action);
     }
-
 
     public function execAfterAction($action)
     {
@@ -78,8 +85,8 @@ class EditClienteInstalacion extends EditController
             $created = $model->init($data);
 
             if (!$created) {
-                $model->delete();
                 $this->dataBase->rollback();
+                $model->delete();
                 $this->toolBox()->i18nLog()->warning('No se ha podido crear la instalación.');
                 return;
             }
@@ -121,6 +128,10 @@ class EditClienteInstalacion extends EditController
 
         switch ($viewName) {
             case $this->getMainViewName():
+                if (!$mainModel->exists()) {
+                    $mainModel->codagente = $this->user->codagente;
+                }
+
                 if ($mainModel->exists()  && $mainModel->idcontacto) {
                     $contact = (new Contacto())->get($mainModel->idcontacto);
                     $client = $contact->getCustomer();
@@ -131,12 +142,15 @@ class EditClienteInstalacion extends EditController
                     $mainModel->telefono = $contact->telefono1;
                     $mainModel->direccion = $contact->direccion;
 
-                    // TODO: Load Recurring doc
                     $recurring = new DocRecurringSale();
                     $exists = $recurring->loadFromCode('', [
                         new DataBaseWhere('id_installation', $mainModel->primaryColumnValue())
                     ]);
-                    // TODO: Edit data update contact
+                    if ($exists) {
+                        $mainModel->codserie = $recurring->codserie;
+                        $mainModel->codalmacen = $recurring->codalmacen;
+                        $mainModel->codpago = $recurring->codpago;
+                    }
                 }
                 break;
 
@@ -173,6 +187,7 @@ class EditClienteInstalacion extends EditController
                     'color' => 'success'
                 ]);
         }
-
     }
+
+    //TODO: On edit data, edit contact and customer and recurring doc
 }

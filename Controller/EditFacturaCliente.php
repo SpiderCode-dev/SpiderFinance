@@ -71,47 +71,46 @@ class EditFacturaCliente extends \FacturaScripts\Core\Controller\EditFacturaClie
                 return;
             }
 
-            $planLine = $model->getPlanLine();
-            if (!$planLine) {
+            $serie = $model->getSerie();
+            if (!$serie->siniva) {
+                ToolBox::i18nLog()->warning('No se puede ajustar el documento porque tiene iva');
+                return;
+            }
+
+            $lines = $model->getLines();
+            if (empty($lines)) {
                 ToolBox::i18nLog()->warning('No se ha encontrado ninguna linea de plan de pagos');
                 return false;
             }
 
-            // Si la línea no tiene iva y es la única línea en la factura
-            // TODO: Implementar para multiples líneas y con iva
-            if ($planLine->iva == 0) {
-                $planLine->pvpunitario = $totalAbonos;
-                $planLine->cantidad = 1;
-                $planLine->descripcion .= " - Pago ajustado total abonos: $ {$totalAbonos}";
-                $model->total = $totalAbonos;
-                $model->observaciones .= "\n El próximo documento emitido tendrá un recargo de $ {$saldo} por ajuste de abonos.";
-                if (!$planLine->save()) {
-                    $this->dataBase->rollback();
-                    ToolBox::i18nLog()->warning('No se ha podido guardar la linea de plan de pagos');
-                    return;
-                }
+            $newLine = $model->getNewLine();
+            $newLine->pvpunitario = -$saldo;
+            $newLine->descripcion .= " - Pago ajustado total abonos: $ {$totalAbonos}";
+            $newLine->codimpuesto = null;
+            $newLine->iva = 0;
+
+            if ($newLine->save()) {
                 $lines = $model->getLines();
                 Calculator::calculate($model, $lines, false);
-
+                $model->observaciones .= "\n El próximo documento emitido tendrá un recargo de $ {$saldo} por ajuste de abonos.";
                 if (!$model->save()) {
                     $this->dataBase->rollback();
                     ToolBox::i18nLog()->warning('No se ha podido guardar la factura');
                     return;
                 }
 
-                ToolBox::i18nLog()->notice('Documento pagado correctamente');
-                $this->payReceipts($model);
                 $generated = $model->generateLineaProgramada($saldo);
-
                 if (!$generated) {
                     $this->dataBase->rollback();
                     ToolBox::i18nLog()->warning('No se ha podido generar la linea programada para el nuevo documento');
                     return;
                 }
 
+                ToolBox::i18nLog()->notice('Documento pagado correctamente');
+                $this->payReceipts($model);
                 $this->dataBase->commit();
                 $this->redirect($model->url('edit'));
-                return;
+                return true;
             }
             $this->dataBase->rollback();
         }
@@ -135,7 +134,8 @@ class EditFacturaCliente extends \FacturaScripts\Core\Controller\EditFacturaClie
             $model = $this->getModel();
             $where = [
                 new DataBaseWhere('iddocument', $model->idfactura),
-                new DataBaseWhere('typedoc', Constans::className($model))
+                new DataBaseWhere('typedoc', Constans::className($model)),
+                new DataBaseWhere('codcliente', $model->codcliente)
             ];
 
             $view->loadData('', $where);

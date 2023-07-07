@@ -21,6 +21,7 @@ class ClienteInstalacion extends ModelClass
     public $id;
     public $val_installation;
     public $generate_document;
+    public $closedate;
 
     const STATUS_REGISTER = 0;
     const STATUS_PENDING = 1;

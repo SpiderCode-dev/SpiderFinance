@@ -37,6 +37,11 @@
         <null>NO</null>
     </column>
     <column>
+        <name>codcliente</name>
+        <type>character varying(10)</type>
+        <null>NO</null>
+    </column>
+    <column>
         <name>iddocument</name>
         <type>integer</type>
         <null>NO</null>
@@ -49,6 +54,10 @@
     <constraint>
         <name>ca_sfi_abonos_formaspago</name>
         <type>FOREIGN KEY (codpago) REFERENCES formaspago (codpago) ON DELETE RESTRICT ON UPDATE CASCADE</type>
+    </constraint>
+    <constraint>
+        <name>ca_abonos_clientes</name>
+        <type>FOREIGN KEY (codcliente) REFERENCES clientes (codcliente) ON DELETE RESTRICT ON UPDATE CASCADE</type>
     </constraint>
     <constraint>
         <name>sfi_abonos_primary_key</name>

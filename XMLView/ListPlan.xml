@@ -21,4 +21,5 @@
             <widget type="text" fieldname="description" />
         </column>
     </columns>
+
 </view>

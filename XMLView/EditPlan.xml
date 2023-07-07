@@ -52,4 +52,9 @@
             </column>
         </group>
     </columns>
+    <rows>
+        <row type="actions">
+            <button type="action" label="Crear mikrotik" color="warning" action="create-mk" icon="fas fa-sort-numeric-down"/>
+        </row>
+    </rows>
 </view>

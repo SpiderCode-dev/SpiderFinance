@@ -2,8 +2,10 @@
 
 namespace FacturaScripts\Plugins\SpiderFinance\Model;
 
+use FacturaScripts\Core\App\AppSettings;
 use FacturaScripts\Core\Model\Base\ModelClass;
 use FacturaScripts\Core\Model\Base\ModelTrait;
+use FacturaScripts\Core\Model\Settings;
 
 class Abono extends ModelClass
 {
@@ -15,6 +17,7 @@ class Abono extends ModelClass
     public $updated_at;
     public $codpago;
     public $iddocument;
+    public $codcliente;
     public $typedoc;
 
     use ModelTrait;
@@ -28,6 +31,12 @@ class Abono extends ModelClass
         return 'sfi_abonos';
     }
 
+    public function clear()
+    {
+        parent::clear();
+        $this->created_at = date('Y-m-d H:i:s');
+        $this->codpago = AppSettings::get('default', 'codpago');
+    }
 
     public function test()
     {

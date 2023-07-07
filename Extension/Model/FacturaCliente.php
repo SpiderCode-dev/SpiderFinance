@@ -14,7 +14,8 @@ class FacturaCliente
             $modelName = Constans::className($this);
             $where = [
                 new DataBaseWhere('iddocument', $this->primaryColumnValue()),
-                new DataBaseWhere('typedoc', $modelName)
+                new DataBaseWhere('typedoc', $modelName),
+                new DataBaseWhere('codcliente', $this->codcliente),
             ];
 
             return (new Abono())->all($where);

@@ -2,6 +2,11 @@
 
 <view>
     <columns>
+        <column name="customer">
+            <widget type="autocomplete" fieldname="codcliente" onclick="EditCliente">
+                <values source="Cliente" fieldcode="codcliente" fieldtitle="nombre"/>
+            </widget>
+        </column>
         <column name="concept">
             <widget type="text" fieldname="concept" />
         </column>

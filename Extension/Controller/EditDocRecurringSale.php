@@ -58,15 +58,12 @@ class EditDocRecurringSale
 
            $vPlan = $variant->precio;
            $monthDays = (int) $this->currentMonthDays(strtotime($mainModel->startdate));
-           $currentDay = intval(date('d', strtotime($mainModel->startdate)));
-           $vPagar = ($vPlan * $currentDay) / $monthDays;
 
-           if ($mainModel->firstdate) {
-               $monthDays = (int) $this->currentMonthDays(strtotime($mainModel->firstdate));
-               $currentDay = intval(date('d', strtotime($mainModel->firstdate)));
-               $vPagar += ($vPlan * $currentDay) / $monthDays;
-           }
+           $planPerDay = $vPlan / $monthDays;
+           $daysInDates = strtotime(date('Y-m-d')) - strtotime($mainModel->startdate);
+           $daysInDates = abs($daysInDates / (60 * 60 * 24));
 
+           $vPagar = $planPerDay * $daysInDates;
            $percentage = ($vPagar / $vPlan) * 100;
            $mainModel->firstpct = round($percentage);
            $mainModel->firstvalue = round(($percentage / 100) * $vPlan, 2);
