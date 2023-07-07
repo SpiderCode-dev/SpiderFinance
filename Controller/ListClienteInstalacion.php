@@ -4,6 +4,7 @@ namespace FacturaScripts\Plugins\SpiderFinance\Controller;
 
 use FacturaScripts\Core\Base\DataBase\DataBaseWhere;
 use FacturaScripts\Core\Lib\ExtendedController\ListController;
+use FacturaScripts\Plugins\SpiderFinance\Model\CajaNap;
 use FacturaScripts\Plugins\SpiderFinance\Model\ClienteInstalacion;
 
 class ListClienteInstalacion extends ListController
@@ -32,6 +33,16 @@ class ListClienteInstalacion extends ListController
 
         foreach ($views as $view) {
             $this->setSettings($view, 'btnNew', false);
+        }
+
+        $views[] = 'ListInstalacionRegister';
+        $naps = $this->codeModel->all('sfi_cajas_nap', 'id', 'code');
+        $plans = $this->codeModel->all('sfi_planes', 'id', 'name');
+
+        foreach ($views as $view) {
+            $this->addFilterPeriod($view, 'closedate','Fecha de corte', 'fas fa-calendar-alt');
+            $this->addFilterSelect($view, 'idnap', 'nap-box', 'idnap', $naps);
+            $this->addFilterSelect($view, 'idplan', 'Plan', 'idplan', $plans);
         }
     }
 
