@@ -40,7 +40,7 @@
 
     <column>
         <name>closedate</name>
-        <type>datetime</type>
+        <type>integer</type>
     </column>
 
     <column>

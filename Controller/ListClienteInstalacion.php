@@ -40,10 +40,19 @@ class ListClienteInstalacion extends ListController
         $plans = $this->codeModel->all('sfi_planes', 'id', 'name');
 
         foreach ($views as $view) {
-            $this->addFilterPeriod($view, 'closedate','Fecha de corte', 'fas fa-calendar-alt');
+            $this->addFilterNumber($view, 'closedate','Fecha de corte', 'closedate');
+            $this->addFilterPeriod($view, 'setupdate','Fecha de instalación', 'setupdate');
             $this->addFilterSelect($view, 'idnap', 'nap-box', 'idnap', $naps);
             $this->addFilterSelect($view, 'idplan', 'Plan', 'idplan', $plans);
         }
+
+        $this->addButton('ListInstalacionInstalled', [
+            'action' => 'setup-install',
+            'icon' => 'fas fa-files-import',
+            'type' => 'modal',
+            'text' => 'Importar instalaciones',
+            'class' => 'btn btn-info',
+        ]);
     }
 
     public function loadData($viewName, $view)
@@ -61,7 +70,7 @@ class ListClienteInstalacion extends ListController
                 return $view->loadData('', [
                     new DataBaseWhere('status', ClienteInstalacion::STATUS_INSTALLED)
                 ]);
-            case 'ListInstalacionCanceled':
+            case 'ListInstalacionCancelled':
                 return $view->loadData('', [
                     new DataBaseWhere('status', ClienteInstalacion::STATUS_CANCELLED)
                 ]);

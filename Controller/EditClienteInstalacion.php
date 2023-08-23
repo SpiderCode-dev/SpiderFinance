@@ -2,11 +2,15 @@
 
 namespace FacturaScripts\Plugins\SpiderFinance\Controller;
 
+use Dompdf\Dompdf;
 use FacturaScripts\Core\Base\DataBase\DataBaseWhere;
 use FacturaScripts\Core\Lib\ExtendedController\EditController;
 use FacturaScripts\Dinamic\Model\Contacto;
 use FacturaScripts\Dinamic\Model\DocRecurringSale;
 use FacturaScripts\Plugins\SpiderFinance\Model\ClienteInstalacion;
+use FacturaScripts\Plugins\SpiderTools\Lib\DomPdfRenderer;
+use FacturaScripts\Plugins\SpiderTools\Lib\TwigRenderer;
+use FacturaScripts\Plugins\SpiderTools\Model\Empresa;
 
 class EditClienteInstalacion extends EditController
 {
@@ -70,6 +74,10 @@ class EditClienteInstalacion extends EditController
             }
         }
 
+        if ($action == 'print' && $this->request->request->get('option') == 'PDF') {
+
+        }
+
         $this->createViews();
         return parent::execPreviousAction($action);
     }
@@ -95,10 +103,44 @@ class EditClienteInstalacion extends EditController
             $this->loadData($this->getMainViewName(), $this->views[$this->getMainViewName()]);
             $this->toolBox()->i18nLog()->info('Instalación creada correctamente, configure los documentos programados.');
         }
+
+        if ($action == 'edit' && $this->active == 'EditClienteInstalacion') {
+            $model = $this->getModel();
+            $data = $this->request->request->all();
+            $this->dataBase->beginTransaction();
+
+            $model->updateContact($data);
+            $model->updatePayment($data);
+            $this->dataBase->commit();
+            $this->loadData($this->getMainViewName(), $this->views[$this->getMainViewName()]);
+        }
     }
 
+    public function exportAction()
+    {
+        $option = $this->request->query->get('option');
+        if ($option == 'PDF') {
+            $mainModel = $this->getModel();
+            $context = [
+                'plan' => $mainModel->getPlan(),
+                'cajanap' => $mainModel->getCajaNap(),
+                'installation' => $mainModel,
+                'contact' => $mainModel->getContact(),
+                'client' => $mainModel->getCustomer(),
+                'enterprise' => Empresa::getDefault(),
+                'coins' => $this->toolBox()->coins(),
+                'logo' => Empresa::getDefault()->logoAsBase64(),
+            ];
+            $printer = TwigRenderer::render('HTMLReports/ClienteInstalacion.html.twig', $context);
+            $pdf = new DomPdfRenderer();
+            $pdf->renderOut($printer, 'Instalación-'.$mainModel->id.'.pdf');
+            return false;
+        }
+        parent::exportAction();
+    }
 
-    public function createRecurrentView($viewName = 'ListDocRecurringSale') {
+    public function createRecurrentView($viewName = 'ListDocRecurringSale')
+    {
         $this->addListView($viewName, 'DocRecurringSale', 'recurring', 'fas fa-calendar-plus');
         $this->views[$viewName]->disableColumn('customer');
         $this->setSettings($viewName, 'btnNew', false);
@@ -136,11 +178,12 @@ class EditClienteInstalacion extends EditController
                     $contact = (new Contacto())->get($mainModel->idcontacto);
                     $client = $contact->getCustomer();
 
-                    $mainModel->cifnif = $client->cifnif;
-                    $mainModel->nombrecliente = $client->razonsocial;
+                    $mainModel->cifnif = $contact->cifnif;
+                    $mainModel->nombrecliente = $contact->nombre;
                     $mainModel->email = $contact->email;
                     $mainModel->telefono = $contact->telefono1;
                     $mainModel->direccion = $contact->direccion;
+                    $mainModel->codcliente = $client->codcliente;
 
                     $recurring = new DocRecurringSale();
                     $exists = $recurring->loadFromCode('', [
@@ -188,6 +231,4 @@ class EditClienteInstalacion extends EditController
                 ]);
         }
     }
-
-    //TODO: On edit data, edit contact and customer and recurring doc
 }

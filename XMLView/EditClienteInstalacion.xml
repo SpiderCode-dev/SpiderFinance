@@ -42,11 +42,11 @@
                 <widget type="datetime" fieldname="visitdate"/>
             </column>
             <column name="Fecha de corte" numcolumns="3">
-                <widget type="datetime" fieldname="closedate"/>
+                <widget type="number" fieldname="closedate"/>
             </column>
 
             <column name="Fecha de instalación" numcolumns="3">
-                <widget type="datetime" fieldname="setupdate" readonly="true"/>
+                <widget type="datetime" fieldname="setupdate"/>
             </column>
             <column name="val_installation" numcolumns="3" description="Dejar en 0 para agregar manualmente, o diferir con Extras de instalación">
                 <widget type="money" fieldname="val_installation" readonly="dinamic" />

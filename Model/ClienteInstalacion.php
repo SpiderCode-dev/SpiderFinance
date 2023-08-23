@@ -2,6 +2,7 @@
 
 namespace FacturaScripts\Plugins\SpiderFinance\Model;
 
+use FacturaScripts\Core\Base\DataBase\DataBaseWhere;
 use FacturaScripts\Core\App\AppSettings;
 use FacturaScripts\Core\Base\DataBase;
 use FacturaScripts\Core\Base\ToolBox;
@@ -58,15 +59,16 @@ class ClienteInstalacion extends ModelClass
         return 'sfi_cliente_instalaciones';
     }
 
-    public function getStatusName() {
+    public function getStatusName()
+    {
         if ($this->exists()) {
             return $this->statusName();
         }
         return 'Registro';
     }
 
-    public function statusName() {
-
+    public function statusName()
+    {
         switch ($this->status) {
             case self::STATUS_REGISTER:
                 return 'Registro';
@@ -81,7 +83,8 @@ class ClienteInstalacion extends ModelClass
         }
     }
 
-    public function setupInstall($data) {
+    public function setupInstall($data)
+    {
         if (!$this->exists()) {
             ToolBox::log()->warning('La instalación no existe, guarde los datos para ejecutar esta acción.');
             return false;
@@ -141,8 +144,9 @@ class ClienteInstalacion extends ModelClass
                 $invoice->nombrecliente = $customer->nombre;
                 $invoice->codpago = $data['codpago'];
                 $invoice->codserie = $data['codserie'];
+                $invoice->idcontactofact = $this->idcontacto;
                 $invoice->codalmacen = $data['codalmacen'];
-                $invoice->fecha = date('Y-m-d');
+                $invoice->fecha = $data['setupdate'];
                 $invoice->id_installation = $this->id;
                 if (!$invoice->save()) {
                     return false;
@@ -183,18 +187,27 @@ class ClienteInstalacion extends ModelClass
     public function init($data)
     {
         //Create contact
+        $client = new Cliente();
+        $found = $client->loadFromCode('', [
+            new DataBaseWhere('cifnif', $data['cifnif'])
+        ]);
+
         $contacto = new Contacto();
         $contacto->nombre = $data['nombrecliente'];
         $contacto->cifnif = $data['cifnif'];
         $contacto->telefono1 = $data['telefono'];
         $contacto->email = $data['email'];
         $contacto->direccion = $data['direccion'];
+
+        if ($found) {
+            $contacto->codcliente = $client->codcliente;
+        }
         if (!$contacto->save()) {
             return false;
         }
 
         //Create customer
-        $customer = $contacto->getCustomer(true);
+        $customer = $contacto->getCustomer(!$found);
         if (!$customer->save()) {
             return false;
         }
@@ -205,10 +218,79 @@ class ClienteInstalacion extends ModelClass
         return $this->save();
     }
 
+    public function updateContact(array $data)
+    {
+        $contact = $this->getContact();
+        $contact->nombre = $data['nombrecliente'];
+        $contact->descripcion = $data['nombrecliente'];
+        $contact->cifnif = $data['cifnif'];
+        $contact->telefono1 = $data['telefono'];
+        $contact->email = $data['email'];
+        $contact->direccion = $data['direccion'];
+
+        return $contact->save();
+    }
+
+    public function updatePayment(array $data)
+    {
+        $document = $this->getCurrentDoc();
+        $document->codpago = $data['codpago'];
+        $document->codagente = $data['codagente'];
+        $document->codserie = $data['codserie'];
+        $document->codalmacen = $data['codalmacen'];
+
+        return $document->save();
+    }
+
+    public function getPlan()
+    {
+        $plan = new Plan();
+        $plan->loadFromCode('', [new DataBaseWhere('id', $this->idplan)]);
+        return $plan->id ? $plan : null;
+    }
+
+    public function getContact()
+    {
+        $contact = new Contacto();
+        $contact->loadFromCode($this->idcontacto);
+        return $contact->idcontacto ? $contact : null;
+    }
+
     public function getCustomer()
     {
         $customer = new Cliente();
         $customer->loadFromCode($this->codcliente);
         return $customer->codcliente ? $customer : null;
+    }
+
+    public function getCajaNap()
+    {
+        $caja = new CajaNap();
+        $caja->loadFromCode('', [new DataBaseWhere('id', $this->idnap)]);
+        return $caja->id ? $caja : null;
+    }
+
+    public function getCurrentDoc()
+    {
+        $doc = new DocRecurringSale();
+        $doc->loadFromCode('', [new DataBaseWhere('id_installation', $this->id)]);
+        return $doc;
+    }
+
+    public function delete()
+    {
+        if ($this->status != static::STATUS_CANCELLED) {
+            $this->status = static::STATUS_CANCELLED;
+            if ($this->save()) {
+                $installation = $this->getCurrentDoc();
+                $installation->delete();
+
+                $extras = (new LineaProgramada())->all([new DataBaseWhere('id_installation', $this->id)]);
+                foreach ($extras as $extra) {
+                    $extra->delete();
+                }
+            }
+        }
+        return parent::delete();
     }
 }

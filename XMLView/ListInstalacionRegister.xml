@@ -15,7 +15,7 @@
                 <values source="sfi_planes" fieldcode="id" fieldtitle="name"/>
             </widget>
         </column>
-        <column name="nap-box" order="110">
+        <column name="nap-box" order="110">m
             <widget type="autocomplete" fieldname="idnap" onclick="EditCajaNap">
                 <values source="sfi_cajas_nap" fieldcode="id" fieldtitle="code"/>
             </widget>
@@ -26,7 +26,7 @@
             </widget>
         </column>
         <column name="Fecha de corte" order="110">
-            <widget type="date" fieldname="closedate" />
+            <widget type="number" fieldname="closedate" />
         </column>
         <column name="observations" order="110">
             <widget type="text" fieldname="observations" />

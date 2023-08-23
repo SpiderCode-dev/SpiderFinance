@@ -68,4 +68,9 @@ class Plan extends ModelClass
 
         return $product;
     }
+
+    public function primaryDescription()
+    {
+        return $this->name . ' - ' . $this->description;
+    }
 }

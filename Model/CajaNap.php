@@ -60,4 +60,16 @@ class CajaNap extends ModelClass
         $code .= "N".$this->number_nap;
         return $code;
     }
+
+    public function getZona() {
+        $zona = new Zona();
+        $zona->loadFromCode($this->idzone);
+        return $zona;
+    }
+
+    public function primaryDescription()
+    {
+        $zona = $this->getZona();
+        return $this->code .' - '. $zona->name;
+    }
 }
