@@ -17,6 +17,7 @@
   "val_installation": "Valor de instalación",
   "created_at" : "Creado",
   "updated_at" : "Actualizado",
+  "in_charge": "Encargado",
   "no-monthly-document": "No es documento mensual",
   "period-dates-must-be-one-month": "Las fechas del periodo deben ser de un mes"
 }

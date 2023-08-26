@@ -124,6 +124,7 @@ class EditClienteInstalacion extends EditController
             $context = [
                 'plan' => $mainModel->getPlan(),
                 'cajanap' => $mainModel->getCajaNap(),
+                'agent' => $mainModel->getInCharge(),
                 'installation' => $mainModel,
                 'contact' => $mainModel->getContact(),
                 'client' => $mainModel->getCustomer(),

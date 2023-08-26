@@ -44,12 +44,22 @@
             <column name="Fecha de corte" numcolumns="3">
                 <widget type="number" fieldname="closedate"/>
             </column>
-
             <column name="Fecha de instalación" numcolumns="3">
                 <widget type="datetime" fieldname="setupdate"/>
             </column>
-            <column name="val_installation" numcolumns="3" description="Dejar en 0 para agregar manualmente, o diferir con Extras de instalación">
+            <column name="coords" numcolumns="3">
+                <widget type="text" fieldname="coords" icon="fas fa-map-marker-alt"/>
+            </column>
+            <column name="in_charge"  numcolumns="3">
+                <widget type="select" fieldname="in_charge" onclick="EditAgente">
+                    <values source="agentes" fieldcode="codagente" fieldtitle="nombre"/>
+                </widget>
+            </column>
+            <column name="val_installation" numcolumns="3" description="Dejar en 0 para agregar manualmente.">
                 <widget type="money" fieldname="val_installation" readonly="dinamic" />
+            </column>
+            <column name="ip-address" numcolumns="3">
+                <widget type="text" fieldname="ip" icon="fas fa-laptop"/>
             </column>
             <column name="Generar documento de instalación" numcolumns="4" description="Si: Se genera un recibo con el valor de instalación &lt;br&gt; No: El valor de instalación se agregará al primer recibo mensual">
                 <widget type="checkbox" fieldname="generate_document" onclick="EditValInstallation" />

@@ -8,6 +8,7 @@ use FacturaScripts\Core\Base\DataBase;
 use FacturaScripts\Core\Base\ToolBox;
 use FacturaScripts\Core\Model\Base\ModelClass;
 use FacturaScripts\Core\Model\Base\ModelTrait;
+use FacturaScripts\Dinamic\Model\Agente;
 use FacturaScripts\Dinamic\Model\Cliente;
 use FacturaScripts\Dinamic\Model\Contacto;
 use FacturaScripts\Dinamic\Model\DocRecurringSaleLine;
@@ -234,12 +235,14 @@ class ClienteInstalacion extends ModelClass
     public function updatePayment(array $data)
     {
         $document = $this->getCurrentDoc();
-        $document->codpago = $data['codpago'];
-        $document->codagente = $data['codagente'];
-        $document->codserie = $data['codserie'];
-        $document->codalmacen = $data['codalmacen'];
-
-        return $document->save();
+        if ($document->exists()) {
+            $document->codpago = $data['codpago'];
+            $document->codagente = $data['codagente'];
+            $document->codserie = $data['codserie'];
+            $document->codalmacen = $data['codalmacen'];
+            return $document->save();
+        }
+        return false;
     }
 
     public function getPlan()
@@ -275,6 +278,13 @@ class ClienteInstalacion extends ModelClass
         $doc = new DocRecurringSale();
         $doc->loadFromCode('', [new DataBaseWhere('id_installation', $this->id)]);
         return $doc;
+    }
+
+    public function getInCharge()
+    {
+        $agent = new Agente();
+        $agent->loadFromCode('', [new DataBaseWhere('codagente', $this->in_charge)]);
+        return $agent->codagente ? $agent : null;
     }
 
     public function delete()

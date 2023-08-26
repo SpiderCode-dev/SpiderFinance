@@ -33,7 +33,7 @@
         table th,
         table td {
             font-size: 10pt;
-            padding: 4px;
+            padding: 3px;
             text-align: left;
         }
         h1, h2, h3, h4 {
@@ -55,7 +55,7 @@
         .inv-logo {
             width: 290px;
             display: block;
-            margin: 20px auto;
+            margin: 20px 0;
         }
 
         /* header */
@@ -64,21 +64,10 @@
             display: flex;
             margin: 20px 0;
         }
-        .inv-header > :nth-child(1) {
-            flex: 2;
-        }
-        .inv-header > :nth-child(2) {
-            flex: 1;
-        }
         .inv-header h2 {
             font-size: 14pt;
             margin: 0 0 10px 0;
         }
-        .inv-header ul li {
-            font-size: 10pt;
-            padding: 3px 0;
-        }
-
         /* body */
         .inv-body table th,
         .inv-body table td {
@@ -98,7 +87,22 @@
         .text-right {
             text-align: right;
         }
-
+        .footer > div {
+            text-align: center;
+            width: 50%;
+            float: left;
+            font-size: 11pt;
+        }
+        .footer h2 {
+            margin-bottom: 0;
+        }
+        span.line {
+            display: block;
+            margin: 50px auto 0 auto;
+            width: 300px;
+            height: 2px;
+            border-bottom: 1px solid silver;
+        }
     </style>
 </head>
 <body>
@@ -117,6 +121,7 @@
             </div>
         </div>
         <div class="inv-header">
+            <p><br></p>
             <h2>Datos del usuario</h2>
             <table>
                 <tr>
@@ -134,6 +139,14 @@
                 <tr>
                     <th>Email:</th>
                     <td>{{ contact.email }}</td>
+                </tr>
+                <tr>
+                    <th>Dirección:</th>
+                    <td>{{ contact.direccion }}</td>
+                </tr>
+                <tr>
+                    <th>Coordenadas:</th>
+                    <td></td>
                 </tr>
             </table>
         </div>
@@ -179,18 +192,15 @@
             <h2>Materiales y equipos</h2>
             <table>
                 <thead>
-                <th>Equipo / Material</th>
-                <th>Cantidad</th>
+                <th width="200px">Equipo / Material</th>
+                <th width="55px">Cantidad</th>
                 <th>Observación</th>
                 </thead>
                 <tbody>
                 <tr>
-                    <td>
-                        <h4>Router Tenda AC58</h4>
-                        <p>5818925882 SN-23</p>
-                    </td>
-                    <td>1</td>
-                    <td>Equipo nuevo</td>
+                    <td><p><br><br></p></td>
+                    <td><p><br><br></p></td>
+                    <td><p><br><br></p></td>
                 </tr>
                 <tr>
                     <td><p><br><br></p></td>
@@ -210,6 +220,20 @@
                 </tbody>
             </table>
         </div>
-    </div>
+
+        <div class="inv-header">
+            <div class="footer">
+                <div>
+                    <span class="line"></span>
+                    <h2>Técnico encargado</h2>
+                    <p style="text-transform: uppercase;">{{ agent.nombre }}</p>
+                </div>
+                <div>
+                    <span class="line"></span>
+                    <h2>Firma del Cliente</h2>
+                    <p>{{ contact.nombre  }}</p>
+                </div>
+            </div>
+        </div>
 </body>
 </html>
