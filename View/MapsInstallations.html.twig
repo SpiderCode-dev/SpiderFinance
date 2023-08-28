@@ -1,4 +1,7 @@
+
+
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBICttaOY1h75l8mjkTCSUz0bGbB4tHcGs"></script>
+<script src="/Dinamic/Assets/Maps/MapBuilder.js"></script>
 
 <div class="card shadow">
     <div class="card-body">
@@ -59,112 +62,26 @@
 
 
 <script>
-    function buildMapMarksJson(data) {
-        let json = {
-            "markers": [],
-            "lines": [],
-        };
-        for(let coord of data) {
-            debugger
-            let marker = {
-                "lat": coord.lat,
-                "lng": coord.lng,
-                "title": coord.id,
-            }
-            json.markers.push(marker)
-        }
-        return json
-    }
+    const MapClients = new MapBuilder(
+        'map-clients',
+        -0.2853451502536884,
+        -78.5433042353088
+    );
+
 
     $('#search-map').on('click', () => {
         fetch('/MapsClientController?action=get-clients-location')
             .then(response => response.json())
             .then(json => {
-                debugger
-                let data = buildMapMarksJson(json)
-                drawMarkersAndLines(data)
+                for(let coord of json) {
+                    MapClients.addMarkerWithInfoWindow(
+                        coord.lat,
+                        coord.lng,
+                        coord.id,
+                        'Hola don vergas'
+                    );
+                }
             })
     })
 
-    const icon = {
-        url: "/Dinamic/Assets/Maps/user.svg", // url
-        scaledSize: new google.maps.Size(30, 30), // scaled size
-        origin: new google.maps.Point(0,0), // origin
-        anchor: new google.maps.Point(0, 0) // anchor
-    };
-
-    let json = {
-        "markers": [
-            {
-                "lat": -0.2853451502536884,
-                "lng": -78.5433042353088,
-                "title": "Marker 1",
-                "infoWindow": {
-                    "content": "<h3>Marker 1</h3><p>Some content here!</p>"
-                }
-            },
-            {
-                "lat": -0.28905311492359625,
-                "lng":  -78.53981982279502,
-                "title": "Marker 2",
-                "infoWindow": {
-                    "content": "<h3>Marker 2</h3><p>Some content here!</p>"
-                }
-            },
-        ],
-    };
-
-    let myStyles =[
-        {
-            featureType: "poi",
-            elementType: "labels",
-            stylers: [
-                { visibility: "off" }
-            ]
-        }
-    ];
-
-    let myOptions = {
-        center: new google.maps.LatLng(-0.2853451502536884, -78.5433042353088),
-        zoom: 13,
-        suppressMarkers: true,
-        suppressInfoWindows: true,
-        mapTypeId: google.maps.MapTypeId.ROADMAP,
-        styles: myStyles
-    };
-
-    let map = new google.maps.Map(document.getElementById("map-clients"), myOptions);
-
-
-    function drawMarkersAndLines(json) {
-        // Get the map object
-
-        // Loop through the markers in the JSON object
-        for (let i = 0; i < json.markers.length; i++) {
-            // Create a new marker object
-            let marker = new google.maps.Marker({
-                position: new google.maps.LatLng(json.markers[i].lat, json.markers[i].lng),
-                map: map,
-                title: json.markers[i].title,
-                icon: "/Dinamic/Assets/Maps/user.svg",
-                // infoWindow: new google.maps.InfoWindow({
-                //     content: json.markers[i].infoWindow.content,
-                // }),
-
-            });
-        }
-
-        // Loop through the lines in the JSON object
-        for (let i = 0; i < json.lines.length; i++) {
-            // Create a new polyline object
-            let line = new google.maps.Polyline({
-                path: json.lines[i].points,
-                map: map,
-                stroke: json.lines[i].color,
-                weight: json.lines[i].weight,
-            });
-        }
-    }
-
-    drawMarkersAndLines(json)
 </script>
