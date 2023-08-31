@@ -16,7 +16,7 @@ use FacturaScripts\Dinamic\Model\FacturaCliente;
 use FacturaScripts\Dinamic\Model\LineaFacturaCliente;
 use FacturaScripts\Plugins\DocumentosRecurrentes\Model\DocRecurringSale;
 
-class ClienteInstalacion extends ModelClass
+class ClienteInstalacion extends ModelClass implements \JsonSerializable
 {
     use ModelTrait;
 
@@ -302,5 +302,23 @@ class ClienteInstalacion extends ModelClass
             }
         }
         return parent::delete();
+    }
+
+    public function jsonSerialize()
+    {
+        $coords = explode(',', $this->coords);
+        $contact = $this->getContact();
+        return [
+            'id' => $this->id,
+            'url' => $this->url(),
+            'lat' => doubleval(trim($coords[0])),
+            'lng' => doubleval(trim($coords[1])),
+            'nombre' => $contact->nombre,
+            'cifnif' => $contact->cifnif,
+            'email' => $contact->email,
+            'plan' => $this->getPlan()->name,
+            'direccion' => $contact->direccion,
+            'telefono' => $contact->telefono1,
+        ];
     }
 }

@@ -31,16 +31,10 @@ class MapsClientController extends Controller
         $installations = (new ClienteInstalacion())->all();
         $response = [];
         foreach ($installations as $installation) {
-            $coords = explode(',', $installation->coords);
-            if (count($coords) == 2)
-            $response[] = [
-                'id' => $installation->id,
-                'lat' => doubleval(trim($coords[0])),
-                'lng' => doubleval(trim($coords[1])),
-            ];
+            if (!empty($installation->coords))
+                $response[] = $installation;
         }
 
         $this->response->setContent(json_encode($response));
     }
-
 }
