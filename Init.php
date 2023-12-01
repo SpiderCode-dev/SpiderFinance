@@ -1,10 +1,8 @@
 <?php
 namespace FacturaScripts\Plugins\SpiderFinance;
 
-use Dompdf\Exception;
 use FacturaScripts\Core\Base\InitClass;
 use FacturaScripts\Dinamic\Model\Producto;
-use FacturaScripts\Plugins\SpiderFinance\Model\Abono;
 use FacturaScripts\Plugins\SpiderFinance\Model\CajaNap;
 use FacturaScripts\Plugins\SpiderFinance\Model\ClienteInstalacion;
 use FacturaScripts\Plugins\SpiderFinance\Model\LineaProgramada;
@@ -28,7 +26,6 @@ class Init extends InitClass
         new Producto();
         new ClienteInstalacion();
         new Zona();
-        new Abono();
         new CajaNap();
         new Plan();
         new Recurso();

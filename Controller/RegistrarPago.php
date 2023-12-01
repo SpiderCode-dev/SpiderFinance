@@ -13,7 +13,7 @@ class RegistrarPago extends PanelController
     public function getPageData(): array
     {
         $data = parent::getPageData();
-        $data['menu'] = 'sales';
+        $data['menu'] = 'customers';
         $data['icon'] = 'fas fa-cash-register';
         $data['title'] = 'Registrar Pago';
         return $data;

@@ -9,7 +9,7 @@ class ListPlan extends ListController
     public function getPageData()
     {
         $data = parent::getPageData();
-        $data['menu'] = 'services';
+        $data['menu'] = 'manage-network';
         $data['title'] = 'plans';
         $data['icon'] = 'fas fa-wifi';
         return $data;

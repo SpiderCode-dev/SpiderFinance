@@ -7,6 +7,13 @@ use FacturaScripts\Dinamic\Model\ClienteInstalacion;
 
 class MapsClientController extends Controller
 {
+    public function getPageData()
+    {
+        $data = parent::getPageData();
+        $data['showonmenu'] = false;
+        return $data;
+    }
+
     public function privateCore(&$response, $user, $permissions)
     {
         parent::privateCore($response, $user, $permissions);

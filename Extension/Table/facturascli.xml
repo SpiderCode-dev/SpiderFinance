@@ -3,7 +3,7 @@
     Document   : facturascli.xml
     Author     : Jose Flores (@xfirepc)
     Description:
-        Structure for the facturasclis table.
+        Structure for the facturascli table.
 -->
 <table>
     <column>
