@@ -61,7 +61,7 @@ class EditCliente extends \FacturaScripts\Core\Controller\EditCliente
         $this->views[$viewName]->disableColumn('customer');
     }
 
-    public function createContactsView(string $viewName = 'EditDireccionContacto')
+    public function createContactsView(string $viewName = 'EditDireccionContacto'): void
     {
         $this->addEditListView($viewName, 'Contacto', 'contacts', 'fas fa-address-book');
     }

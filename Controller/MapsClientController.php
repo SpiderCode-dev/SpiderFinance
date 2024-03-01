@@ -7,7 +7,7 @@ use FacturaScripts\Dinamic\Model\ClienteInstalacion;
 
 class MapsClientController extends Controller
 {
-    public function getPageData()
+    public function getPageData(): array
     {
         $data = parent::getPageData();
         $data['showonmenu'] = false;

@@ -6,7 +6,7 @@ use FacturaScripts\Core\Lib\ExtendedController\EditController;
 class EditAbono extends EditController
 {
 
-    public function getModelClassName()
+    public function getModelClassName(): string
     {
         return 'Abono';
     }

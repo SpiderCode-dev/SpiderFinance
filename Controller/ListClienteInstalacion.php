@@ -9,7 +9,7 @@ use FacturaScripts\Plugins\SpiderFinance\Model\ClienteInstalacion;
 
 class ListClienteInstalacion extends ListController
 {
-    public function getPageData()
+    public function getPageData(): array
     {
         $data = parent::getPageData();
         $data['menu'] = 'customers';

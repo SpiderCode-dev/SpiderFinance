@@ -14,14 +14,14 @@ use FacturaScripts\Plugins\SpiderTools\Model\Empresa;
 
 class EditClienteInstalacion extends EditController
 {
-    public function getPageData()
+    public function getPageData(): array
     {
         $data = parent::getPageData();
         $data['title'] = 'installation';
         return $data;
     }
 
-    public function getModelClassName()
+    public function getModelClassName(): string
     {
         return 'ClienteInstalacion';
     }

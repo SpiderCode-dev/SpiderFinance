@@ -12,7 +12,7 @@ use FacturaScripts\Dinamic\Model\Variante;
 class EditLineaProgramada extends EditController
 {
 
-    public function getModelClassName()
+    public function getModelClassName(): string
     {
         return 'LineaProgramada';
     }
