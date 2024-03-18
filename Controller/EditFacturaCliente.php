@@ -5,7 +5,7 @@ namespace FacturaScripts\Plugins\SpiderFinance\Controller;
 use FacturaScripts\Core\Base\Calculator;
 use FacturaScripts\Core\Base\DataBase\DataBaseWhere;
 use FacturaScripts\Core\Base\ToolBox;
-use FacturaScripts\Plugins\SpiderFact\Lib\Constans;
+use FacturaScripts\Plugins\SpiderFact\Lib\FactTools;
 
 class EditFacturaCliente extends \FacturaScripts\Core\Controller\EditFacturaCliente
 {
@@ -134,7 +134,7 @@ class EditFacturaCliente extends \FacturaScripts\Core\Controller\EditFacturaClie
             $model = $this->getModel();
             $where = [
                 new DataBaseWhere('iddocument', $model->idfactura),
-                new DataBaseWhere('typedoc', Constans::className($model)),
+                new DataBaseWhere('typedoc', FactTools::className($model)),
                 new DataBaseWhere('codcliente', $model->codcliente)
             ];
 

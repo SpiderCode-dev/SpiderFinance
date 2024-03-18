@@ -4,7 +4,7 @@ namespace FacturaScripts\Plugins\SpiderFinance\Lib\DocumentosRecurrentes;
 
 use FacturaScripts\Core\Base\DataBase;
 use FacturaScripts\Core\Base\DataBase\DataBaseWhere;
-use FacturaScripts\Plugins\SpiderFact\Lib\Constans;
+use FacturaScripts\Plugins\SpiderFact\Lib\FactTools;
 use FacturaScripts\Plugins\SpiderFinance\Model\LineaProgramada;
 
 class DocRecurringManager extends \FacturaScripts\Plugins\DocumentosRecurrentes\Lib\DocumentosRecurrentes\DocRecurringManager
@@ -12,7 +12,7 @@ class DocRecurringManager extends \FacturaScripts\Plugins\DocumentosRecurrentes\
     protected function createDocument(): bool
     {
         $created = parent::createDocument();
-        if ($created && Constans::className($this->document) === 'FacturaCliente') {
+        if ($created && FactTools::className($this->document) === 'FacturaCliente') {
             $this->document->id_installation = $this->template->id_installation;
             return $this->document->save();
         }
@@ -24,7 +24,7 @@ class DocRecurringManager extends \FacturaScripts\Plugins\DocumentosRecurrentes\
     {
         $created = parent::createDocumentLines();
         $dataBase = new DataBase();
-        if ($created && Constans::className($this->document) === 'FacturaCliente') {
+        if ($created && FactTools::className($this->document) === 'FacturaCliente') {
             $dataBase->beginTransaction();
             $pendingLine = new LineaProgramada();
 

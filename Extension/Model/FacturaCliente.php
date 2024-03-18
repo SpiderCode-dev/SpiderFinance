@@ -4,14 +4,14 @@ namespace FacturaScripts\Plugins\SpiderFinance\Extension\Model;
 
 use FacturaScripts\Core\Base\DataBase\DataBaseWhere;
 use FacturaScripts\Dinamic\Model\Abono;
-use FacturaScripts\Plugins\SpiderFact\Lib\Constans;
+use FacturaScripts\Plugins\SpiderFact\Lib\FactTools;
 use FacturaScripts\Plugins\SpiderFinance\Model\LineaProgramada;
 
 class FacturaCliente
 {
     public function getAbonos() {
         return function() {
-            $modelName = Constans::className($this);
+            $modelName = FactTools::className($this);
             $where = [
                 new DataBaseWhere('iddocument', $this->primaryColumnValue()),
                 new DataBaseWhere('typedoc', $modelName),
