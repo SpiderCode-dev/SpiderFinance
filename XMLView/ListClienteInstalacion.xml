@@ -26,7 +26,7 @@
             </widget>
         </column>
         <column name="Fecha de corte" order="110">
-            <widget type="number" fieldname="closedate" />
+            <widget type="text" fieldname="closedate" />
         </column>
         <column name="observations" order="110">
             <widget type="text" fieldname="observations" />
