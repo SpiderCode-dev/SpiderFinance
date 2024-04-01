@@ -3,7 +3,7 @@
 namespace FacturaScripts\Plugins\SpiderFinance\Extension\Model;
 
 use FacturaScripts\Core\Base\DataBase\DataBaseWhere;
-use FacturaScripts\Dinamic\Model\Abono;
+use FacturaScripts\Dinamic\Model\AbonoCliente;
 use FacturaScripts\Plugins\SpiderFact\Lib\FactTools;
 use FacturaScripts\Plugins\SpiderFinance\Model\LineaProgramada;
 
@@ -18,7 +18,7 @@ class FacturaCliente
                 new DataBaseWhere('codcliente', $this->codcliente),
             ];
 
-            return (new Abono())->all($where);
+            return (new AbonoCliente())->all($where);
         };
     }
 
