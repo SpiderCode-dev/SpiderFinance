@@ -18,7 +18,9 @@ class Init extends InitClass
         $this->loadExtension(new Extension\Model\Producto());
         $this->loadExtension(new Extension\Model\FacturaCliente());
         $this->loadExtension(new Extension\Model\LineaFacturaCliente());
+        $this->loadExtension(new Extension\Model\User());
         $this->loadExtension(new Extension\Controller\EditDocRecurringSale());
+        $this->loadExtension(new Extension\Controller\EditSettings());
     }
     public function update()
     {

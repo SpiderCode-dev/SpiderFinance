@@ -20,6 +20,10 @@ class LineaProgramada extends SalesDocumentLine
     use ModelTrait;
     use InvoiceLineTrait;
 
+    public function hasRefundedQuantity():bool{
+        return true;
+    }
+
     public static function primaryColumn(): string
     {
         return 'idlinea';
@@ -72,4 +76,6 @@ class LineaProgramada extends SalesDocumentLine
 
         return parent::delete();
     }
+
+   
 }

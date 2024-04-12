@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<view>
+    <columns>
+        <group name="finances" numcolumns="12">
+            <column name="name" display="none" order="0">
+                <widget type="text" fieldname="name" readonly="true" required="true" />
+            </column>
+            <column name="Agente" order="1" numcolumns="3" description="Este agente se guardara cuando cree un usuario">
+                <widget type="autocomplete" fieldname="codagente" onclick="EditAgente">
+                    <values source="agentes" fieldcode="codagente" fieldtitle="nombre"/>
+                </widget>
+            </column>
+        </group>
+    </columns>
+</view>
