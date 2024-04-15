@@ -5,6 +5,7 @@ namespace FacturaScripts\Plugins\SpiderFinance\Controller;
 use Dompdf\Dompdf;
 use FacturaScripts\Core\Base\DataBase\DataBaseWhere;
 use FacturaScripts\Core\Lib\ExtendedController\EditController;
+use FacturaScripts\Dinamic\Lib\AssetManager;
 use FacturaScripts\Dinamic\Model\Contacto;
 use FacturaScripts\Dinamic\Model\DocRecurringSale;
 use FacturaScripts\Plugins\SpiderFinance\Model\ClienteInstalacion;
@@ -34,6 +35,9 @@ class EditClienteInstalacion extends EditController
         $this->createLineasProgramadasView();
         $this->createDocumentsView();
         $this->showButtons();
+        AssetManager::add('js', 'Dinamic/Assets/SpiderTools/FiscalNumQuery.js');
+        AssetManager::add('css', 'Dinamic/Assets/SpiderTools/FiscalNumQuery.css');
+
     }
 
     public function execPreviousAction($action)

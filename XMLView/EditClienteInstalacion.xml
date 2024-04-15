@@ -50,6 +50,9 @@
             <column name="coords" numcolumns="3">
                 <widget type="text" fieldname="coords" icon="fas fa-map-marker-alt"/>
             </column>
+            <column name="btngps" numcolumns="1" description="coords">
+                <widget type="btngps" fieldname="cord"/>
+            </column>
             <column name="in_charge"  numcolumns="3">
                 <widget type="select" fieldname="in_charge" onclick="EditAgente">
                     <values source="agentes" fieldcode="codagente" fieldtitle="nombre"/>

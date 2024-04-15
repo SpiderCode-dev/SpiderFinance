@@ -5,7 +5,7 @@
             <column name="code" numcolumns="3">
                 <widget type="text" fieldname="code" readonly="true"/>
             </column>
-            <column name="zone"  numcolumns="3">>
+            <column name="zone"  numcolumns="3">
                 <widget type="select" fieldname="idzone" onclick="EditZone">
                     <values source="sfi_zonas" fieldcode="id" fieldtitle="name"/>
                 </widget>
@@ -24,6 +24,9 @@
             </column>
             <column name="coords" numcolumns="4">
                 <widget type="text" fieldname="coords"/>
+            </column>
+            <column name="btngps" numcolumns="1" description="coords">
+                <widget type="btngps" fieldname="cord"/>
             </column>
             <column name="available" numcolumns="2">
                 <widget type="number" fieldname="available" readonly="true"/>

@@ -116,6 +116,7 @@ class ClienteInstalacion extends ModelClass implements \JsonSerializable
         $doc->codcliente = $customer->codcliente;
         $doc->generatedoc = 'FacturaCliente';
         $doc->name = "Instalación " . $this->id;
+        $doc->codagente = $data["codagente"];
         $doc->id_installation = $this->id;
         if (!$doc->save()) {
             return false;
