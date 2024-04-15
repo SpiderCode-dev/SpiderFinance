@@ -72,4 +72,12 @@ class LineaProgramada extends SalesDocumentLine
 
         return parent::delete();
     }
+
+    /**
+     * @return bool
+     */
+    public function hasRefundedQuantity(): bool
+    {
+        // TODO: Implement hasRefundedQuantity() method.
+    }
 }
