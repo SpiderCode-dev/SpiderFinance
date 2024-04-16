@@ -1,7 +1,20 @@
+<link rel="stylesheet" href="Plugins/SpiderFinance/Assets/Maps/css/leaflet.css" />
+<link rel="stylesheet" href="Plugins/SpiderFinance/Assets/Maps/css/leaflet-geo.css" />
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.3/leaflet.draw.css" />
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css" />
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
 
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBICttaOY1h75l8mjkTCSUz0bGbB4tHcGs"></script>
-<script src="/Dinamic/Assets/Maps/MapBuilder.js"></script>
+<script type="text/javascript" src="Plugins/SpiderFinance/Assets/Maps/js/leaflet.js"></script>
+<script type="text/javascript" src="Plugins/SpiderFinance/Assets/Maps/js/leaflet-geo.js"></script>
+<script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script>
+
+
+
 <div class="card shadow">
     <div class="card-body">
         <div class="form-row">
@@ -11,8 +24,8 @@
                     <legend class="text-info mt-2 mb-0"><i class="fas fa-map-marked-alt fa-fw"></i> Ubicaciones de usuarios</legend>
                     <div class="col-md-3">
                         <div class="form-group mb-2">
-                            <label class="mb-0">Zona</label>
-                            <select name="idzone" id="" class="form-control" autocomplete="off">
+                            <label class="form-check-label">Zona</label>
+                            <select name="idzone" class="form-control" autocomplete="off">
                                 <option value="">------</option>
                                 {% for zone in fsc.getZones() %}
                                     <option value="{{ zone.id }}">{{ zone.name }}</option>
@@ -22,8 +35,8 @@
                     </div>
                     <div class="col-md-3">
                         <div class="form-group mb-2">
-                            <label class="mb-0">Pendiente de pago</label>
-                            <select name="idzone" id="" class="form-control" autocomplete="off">
+                            <label class="form-check-label">Pendiente de pago</label>
+                            <select name="" id="" class="form-control" autocomplete="off">
                                 <option value="">------</option>
                                 <option value="1">Pagado</option>
                                 <option value="2">Impago</option>
@@ -33,8 +46,8 @@
                     </div>
                     <div class="col-md-3">
                         <div class="form-group mb-2">
-                            <label class="mb-0">Estado de instalación</label>
-                            <select name="idzone" id="" class="form-control" autocomplete="off">
+                            <label class="form-check-label">Estado de instalación</label>
+                            <select name="" id="" class="form-control" autocomplete="off">
                                 <option value="">------</option>
                                 <option value="1">Pendiente</option>
                                 <option value="2">Instalado</option>
@@ -42,20 +55,46 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-md-3 text-right">
+                    <div class="col-md-3">
+                        <div class="form-group mb-2">
+                            <label class="form-check-label">Caja Naps</label>
+                            <input type="hidden" name="idcaja" value="" class="form-control">
+                            <input type="text" name="textcajanap" class="form-control widget-autocomplete ui-autocomplete-input" data-field="idcaja" data-source="sfi_cajas_nap" data-fieldcode="id" data-fieldtitle="address" data-fieldfilter="" data-strict="1" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group mb-2">
+                            <label class="form-check-label">Clientes</label>
+                            <input type="hidden" name="idlinea" value="" class="form-control">
+                            <input type="text" name="textlinea" class="form-control widget-autocomplete ui-autocomplete-input" data-field="idlinea" data-source="sfi_cliente_instalaciones" data-fieldcode="id" data-fieldtitle="description" data-fieldfilter="" data-strict="1" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <br>
+                        <input type="checkbox" class="form-check-input" id="cajanap" name="cajanap">
+                        <label class="form-check-label" for="cajanap">Mostrar Caja Naps</label>
+                    </div>
+                    <div class="col-md-3">
+                        <br>
+                        <input type="checkbox" class="form-check-input" checked id="clienteview">
+                        <label class="form-check-label" for="clienteview">Mostrar Clientes</label>
+                    </div>
+                    
+                    <div class="col-md-3 text-right">     
                         <button id="clean-map" class="btn btn-secondary btn-sm mt-4">
                             <i class="fas fa-eraser fa-fw"></i> Limpiar
                         </button>
-                        <button id="search-map" class="btn btn-primary btn-sm mt-4">
+                        <button onclick="consultInfo()" id="search-map" class="btn btn-primary btn-sm mt-4">
                             <i class="fas fa-search fa-fw"></i> Buscar
                         </button>
                     </div>
                 </div>
                 </form>
-
                 <div class="row">
                     <div class="col-md-12 mt-2">
-                        <div id="map-clients" style="height: calc(100vh - 370px);"></div>
+                        <div class="wrapper">
+                            <div class="map" id="view-map"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -63,36 +102,11 @@
     </div>
 </div>
 
+<link rel="stylesheet" href="Plugins/SpiderFinance/Assets/Maps/css/zones.css" />
 
 <script>
-    const MapClients = new MapBuilder(
-        'map-clients',
-        -0.2853451502536884,
-        -78.5433042353088
-    );
-
-
-    $('#search-map').on('click', () => {
-        fetch('/MapsClientController?action=get-clients-location')
-            .then(response => response.json())
-            .then(json => {
-                for(let item of json) {
-                    MapClients.addMarkerWithInfoWindow(
-                        item.lat,
-                        item.lng,
-                        item.id,
-                        `
-                            <strong>${item.nombre}</strong><br>
-                            ${ item.cifnif + '<br>'|| ''}
-                            ${ item.direccion + '<br>'|| ''}
-                            ${ item.telefono + '<br>'|| ''}
-                            ${ item.email + '<br>'|| ''}
-                            <strong>${item.plan}</strong><br>
-                            <a href="${item.url}" target="_blank">Ver usuario</a>
-                        `
-                    );
-                }
-            })
-    })
-
+  const ALL_EMPLEADOS = `[]`;
 </script>
+
+<script type="text/javascript" src="Plugins/SpiderFinance/Assets/Maps/js/config_maps.js"></script>
+<script type="text/javascript" src="Plugins/SpiderFinance/Assets/Maps/js/maps-rastreo.js"></script>

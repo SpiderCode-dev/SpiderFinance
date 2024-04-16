@@ -1,0 +1,50 @@
+
+.map {
+  height: calc(100vh - 300px);
+}
+
+.zone-selected-option{
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 8px;
+  margin-top: 5px;
+}
+.select2-selection__choice > div {
+  display: inline-block;
+}
+.select2-selection__choice__remove {
+  font-size: 26px;
+  line-height: 1;
+}
+.select2-selection__choice > div > span {
+  color: #0a0e14;
+}
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+  background-color: #ffffff;
+  border: 1px solid #dedede;
+}
+.select2-container--default .select2-results__option[aria-selected=true] {
+  background: #ffffff;
+}
+.map-description {
+  padding: 10px 20px;
+  background: #343a40;
+  border-radius: 5px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+
+.map-description.error {
+  background: #bb1010;
+}
+
+
+.map-description.success {
+  background: #19810a;
+}
+
