@@ -48,10 +48,7 @@
                 <widget type="datetime" fieldname="setupdate"/>
             </column>
             <column name="coords" numcolumns="3">
-                <widget type="text" fieldname="coords" icon="fas fa-map-marker-alt"/>
-            </column>
-            <column name="btngps" numcolumns="1" description="coords">
-                <widget type="btngps" fieldname="cord" />
+                <widget type="btngps" fieldname="coords"/>
             </column>
             <column name="in_charge"  numcolumns="3">
                 <widget type="select" fieldname="in_charge" onclick="EditAgente">
