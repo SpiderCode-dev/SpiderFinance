@@ -288,7 +288,7 @@ class ClienteInstalacion extends ModelClass implements \JsonSerializable
         return $agent->codagente ? $agent : null;
     }
 
-    public function delete()
+    public function delete(): bool
     {
         if ($this->status != static::STATUS_CANCELLED) {
             $this->status = static::STATUS_CANCELLED;
