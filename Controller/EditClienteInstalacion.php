@@ -35,6 +35,7 @@ class EditClienteInstalacion extends EditController
         $this->createLineasProgramadasView();
         $this->createDocumentsView();
         $this->showButtons();
+        AssetManager::add('js', 'Dinamic/Assets/SpiderTools/FiscalNumBase.js');
         AssetManager::add('js', 'Dinamic/Assets/SpiderTools/FiscalNumQuery.js');
         AssetManager::add('css', 'Dinamic/Assets/SpiderTools/FiscalNumQuery.css');
 

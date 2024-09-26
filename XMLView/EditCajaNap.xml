@@ -2,8 +2,11 @@
 <view>
     <columns>
         <group name="nap" numcolumns="12" title="Caja NAP" icon="fas fa-boxes">
+            <column name="id" numcolumns="3" display="none">
+                <widget type="text" fieldname="id" readonly="true"/>
+            </column>
             <column name="code" numcolumns="3">
-                <widget type="text" fieldname="code" readonly="true"/>
+                <widget type="text" fieldname="CodeNap" readonly="true"/>
             </column>
             <column name="zone"  numcolumns="3">
                 <widget type="select" fieldname="idzone" onclick="EditZone">
@@ -23,10 +26,7 @@
                 <widget type="number" fieldname="number_ports"/>
             </column>
             <column name="coords" numcolumns="4">
-                <widget type="text" fieldname="coords"/>
-            </column>
-            <column name="btngps" numcolumns="1" description="coords">
-                <widget type="btngps" fieldname="cord"/>
+                <widget type="btngps" fieldname="coords"/>
             </column>
             <column name="available" numcolumns="2">
                 <widget type="number" fieldname="available" readonly="true"/>

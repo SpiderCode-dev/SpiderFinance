@@ -19,9 +19,16 @@ class CajaNap extends ModelClass
     public $busy;
     public $coords;
 
-
-
     use ModelTrait;
+
+    public function __get($name)
+    {
+        $getter_name = "get" . $name;
+        if (method_exists($this, $getter_name)) {
+            return $this->{$getter_name}();
+        }
+        return null;
+    }
 
     public static function primaryColumn(): string
     {
@@ -71,5 +78,9 @@ class CajaNap extends ModelClass
     {
         $zona = $this->getZona();
         return $this->code .' - '. $zona->name;
+    }
+
+    public function getCodeNap() {
+        return $this->code;
     }
 }
